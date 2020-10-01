@@ -26,6 +26,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
 using MemIDFunc_namespace;
+using System.Threading;
 
 namespace MiFare_Programming
 {
@@ -297,7 +298,6 @@ namespace MiFare_Programming
             retCode = ModWinsCard.SCardReleaseContext(hContext);
             retCode = ModWinsCard.SCardDisconnect(hCard, ModWinsCard.SCARD_UNPOWER_CARD);
             System.Environment.Exit(0);
-
         }
 
 
@@ -637,7 +637,7 @@ namespace MiFare_Programming
             }
 
             RdrState.RdrName = rName;
-
+            //Check Card resource and card appearance
             retCode = ModWinsCard.SCardGetStatusChangeA(this.hContext, 20000, ref RdrState, 1);
             OnCardResourceFailed();
 
@@ -768,6 +768,23 @@ namespace MiFare_Programming
         {
             _ = MessageBox.Show("Program is reseting");
 
+            if (connActive)
+            {
+
+                retCode = ModWinsCard.SCardDisconnect(hCard, ModWinsCard.SCARD_UNPOWER_CARD);
+
+            }
+
+            retCode = ModWinsCard.SCardReleaseContext(hCard);
+            InitMenu();
+
+            PInitialize();
+
+            PLoadAu();
+        }
+
+        private void AutoSetup()
+        {
             if (connActive)
             {
 
