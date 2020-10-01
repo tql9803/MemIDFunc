@@ -9,7 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MemIDFunc_namespace</RootNamespace>
     <AssemblyName>MemIDFunc</AssemblyName>
-    <ApplicationIcon>ACS_logo.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -50,6 +51,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Controls.2.2.5\lib\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Word, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -60,11 +85,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddMemForm.cs">
+    <Compile Include="Forms\AddMemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddMemForm.Designer.cs">
+    <Compile Include="Forms\AddMemForm.Designer.cs">
       <DependentUpon>AddMemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\CardThreading.cs" />
+    <Compile Include="Classes\DatabaseAccess.cs" />
+    <Compile Include="Forms\CapturePicture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CapturePicture.Designer.cs">
+      <DependentUpon>CapturePicture.cs</DependentUpon>
     </Compile>
     <Compile Include="MemberID_dbDataSet.cs">
       <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
@@ -74,21 +107,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="MemIDFunc.cs">
+    <Compile Include="Forms\MemIDFunc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MemIDFunc.Designer.cs">
+    <Compile Include="Forms\MemIDFunc.Designer.cs">
       <DependentUpon>MemIDFunc.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModWinsCard.cs" />
+    <Compile Include="Forms\MemInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MemInfoForm.Designer.cs">
+      <DependentUpon>MemInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ModWinsCard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddMemForm.resx">
+    <EmbeddedResource Include="Forms\AddMemForm.resx">
       <DependentUpon>AddMemForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MemIDFunc.resx">
+    <EmbeddedResource Include="Forms\CapturePicture.resx">
+      <DependentUpon>CapturePicture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MemIDFunc.resx">
       <DependentUpon>MemIDFunc.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MemInfoForm.resx">
+      <DependentUpon>MemInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -101,6 +146,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\Documents\Employment Agreement.v1.docx" />
     <None Include="MemberID_dbDataSet.xsc">
       <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
     </None>
@@ -112,6 +159,7 @@
     <None Include="MemberID_dbDataSet.xss">
       <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Resources\Documents\Membership Agreement.v1.docx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -123,7 +171,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ACS_logo.ico" />
+    <Content Include="Logo1.jpg" />
     <Content Include="MemberID_db.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -131,6 +179,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>MemberID_db.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Logo1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
