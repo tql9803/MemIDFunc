@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace MiFare_Programming
+namespace MainUI_namespace
 {
     static class Program
     {
@@ -15,7 +15,7 @@ namespace MiFare_Programming
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            MemIDFunc miFareCardProg = new MemIDFunc();
+            MainUI miFareCardProg = new MainUI();
             //Mifare_Ex mifare_Ex = new Mifare_Ex();
             //miFareCardProg.NewMemTriggered += mifare_Ex.ExNewMemTriggered;
 
