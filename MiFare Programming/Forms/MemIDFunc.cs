@@ -74,7 +74,8 @@ namespace MainUI_namespace
 
         private void MiFareCardProg_Load(object sender, EventArgs e)
         {
-            this.memIDTableAdapter.Fill(this.memberID_dbDataSet.MemID);
+            // TODO: This line of code loads data into the 'memberInfo_dbDataSet.MemberInformation' table. You can move, or remove it, as needed.
+            this.memberInformationTableAdapter.Fill(this.memberInfo_dbDataSet.MemberInformation);
             bSCard.Enabled = true;
         }
 
@@ -87,6 +88,14 @@ namespace MainUI_namespace
         private void bSCard_Click(object sender, EventArgs e)
         {
             InitMenu();
+        }
+
+        private void memberInformationBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.memberInformationBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.memberInfo_dbDataSet);
+
         }
 
         private void bQuit_Click(object sender, EventArgs e)

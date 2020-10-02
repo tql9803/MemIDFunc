@@ -92,7 +92,9 @@
     <Reference Include="Microsoft.Office.Tools.Word, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -116,14 +118,6 @@
     <Compile Include="Forms\CapturePicture.Designer.cs">
       <DependentUpon>CapturePicture.cs</DependentUpon>
     </Compile>
-    <Compile Include="MemberID_dbDataSet.cs">
-      <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MemberID_dbDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Forms\MemIDFunc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +131,11 @@
       <DependentUpon>MemInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\ModWinsCard.cs" />
+    <Compile Include="MemberInfo_dbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AddMemForm.resx">
@@ -163,20 +162,20 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="MemberInfo_dbDataSet.xsc">
+      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MemberInfo_dbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MemberInfo_dbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MemberInfo_dbDataSet.xss">
+      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
+    </None>
     <None Include="MemIDFunc_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Resources\Documents\Employment Agreement.v1.docx" />
-    <None Include="MemberID_dbDataSet.xsc">
-      <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MemberID_dbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MemberID_dbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MemberID_dbDataSet.xss">
-      <DependentUpon>MemberID_dbDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Resources\Documents\Membership Agreement.v1.docx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -191,13 +190,6 @@
   <ItemGroup>
     <Content Include="GymWebIco.ico" />
     <Content Include="Logo1.jpg" />
-    <Content Include="MemberID_db.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MemberID_db_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>MemberID_db.mdf</DependentUpon>
-    </Content>
     <None Include="Resources\Documents\Waiver.docx" />
     <None Include="Resources\Logo1.jpg" />
   </ItemGroup>

@@ -32,12 +32,13 @@ namespace MainUI_namespace
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.bReset = new System.Windows.Forms.Button();
             this.bQuit = new System.Windows.Forms.Button();
-            this.memberID_dbDataSet = new MemIDFunc_namespace.MemberID_dbDataSet();
-            this.memIDBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.memIDTableAdapter = new MemIDFunc_namespace.MemberID_dbDataSetTableAdapters.MemIDTableAdapter();
             this.bSCard = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.memberID_dbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memIDBindingSource)).BeginInit();
+            this.memberInfo_dbDataSet = new MemIDFunc_namespace.MemberInfo_dbDataSet();
+            this.memberInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.memberInformationTableAdapter = new MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters.MemberInformationTableAdapter();
+            this.tableAdapterManager = new MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters.TableAdapterManager();
+            ((System.ComponentModel.ISupportInitialize)(this.memberInfo_dbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memberInformationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bReset
@@ -47,7 +48,7 @@ namespace MainUI_namespace
             this.bReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bReset.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bReset.ForeColor = System.Drawing.Color.Blue;
-            this.bReset.Location = new System.Drawing.Point(275, 422);
+            this.bReset.Location = new System.Drawing.Point(275, 404);
             this.bReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bReset.Name = "bReset";
             this.bReset.Size = new System.Drawing.Size(150, 50);
@@ -63,7 +64,7 @@ namespace MainUI_namespace
             this.bQuit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bQuit.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bQuit.ForeColor = System.Drawing.Color.Blue;
-            this.bQuit.Location = new System.Drawing.Point(119, 422);
+            this.bQuit.Location = new System.Drawing.Point(119, 404);
             this.bQuit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bQuit.Name = "bQuit";
             this.bQuit.Size = new System.Drawing.Size(150, 50);
@@ -72,20 +73,6 @@ namespace MainUI_namespace
             this.bQuit.UseVisualStyleBackColor = false;
             this.bQuit.Click += new System.EventHandler(this.bQuit_Click);
             // 
-            // memberID_dbDataSet
-            // 
-            this.memberID_dbDataSet.DataSetName = "MemberID_dbDataSet";
-            this.memberID_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // memIDBindingSource
-            // 
-            this.memIDBindingSource.DataMember = "MemID";
-            this.memIDBindingSource.DataSource = this.memberID_dbDataSet;
-            // 
-            // memIDTableAdapter
-            // 
-            this.memIDTableAdapter.ClearBeforeFill = true;
-            // 
             // bSCard
             // 
             this.bSCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -93,7 +80,7 @@ namespace MainUI_namespace
             this.bSCard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bSCard.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bSCard.ForeColor = System.Drawing.Color.Blue;
-            this.bSCard.Location = new System.Drawing.Point(202, 211);
+            this.bSCard.Location = new System.Drawing.Point(202, 193);
             this.bSCard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bSCard.Name = "bSCard";
             this.bSCard.Size = new System.Drawing.Size(150, 50);
@@ -101,6 +88,26 @@ namespace MainUI_namespace
             this.bSCard.Text = "Scan Card";
             this.bSCard.UseVisualStyleBackColor = false;
             this.bSCard.Click += new System.EventHandler(this.bSCard_Click);
+            // 
+            // memberInfo_dbDataSet
+            // 
+            this.memberInfo_dbDataSet.DataSetName = "MemberInfo_dbDataSet";
+            this.memberInfo_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // memberInformationBindingSource
+            // 
+            this.memberInformationBindingSource.DataMember = "MemberInformation";
+            this.memberInformationBindingSource.DataSource = this.memberInfo_dbDataSet;
+            // 
+            // memberInformationTableAdapter
+            // 
+            this.memberInformationTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.MemberInformationTableAdapter = this.memberInformationTableAdapter;
+            this.tableAdapterManager.UpdateOrder = MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // MainUI
             // 
@@ -110,7 +117,7 @@ namespace MainUI_namespace
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.BackgroundImage = global::MemIDFunc_namespace.Properties.Resources.Logo1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(556, 483);
+            this.ClientSize = new System.Drawing.Size(556, 465);
             this.Controls.Add(this.bSCard);
             this.Controls.Add(this.bReset);
             this.Controls.Add(this.bQuit);
@@ -124,8 +131,8 @@ namespace MainUI_namespace
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MiFareCardProg_Load);
             this.SizeChanged += new System.EventHandler(this.UI_OnSizeChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.memberID_dbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memIDBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memberInfo_dbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memberInformationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -134,10 +141,11 @@ namespace MainUI_namespace
 
         internal System.Windows.Forms.Button bReset;
         internal System.Windows.Forms.Button bQuit;
-        private MemIDFunc_namespace.MemberID_dbDataSet memberID_dbDataSet;
-        private System.Windows.Forms.BindingSource memIDBindingSource;
-        private MemIDFunc_namespace.MemberID_dbDataSetTableAdapters.MemIDTableAdapter memIDTableAdapter;
         internal System.Windows.Forms.Button bSCard;
+        private MemIDFunc_namespace.MemberInfo_dbDataSet memberInfo_dbDataSet;
+        private System.Windows.Forms.BindingSource memberInformationBindingSource;
+        private MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters.MemberInformationTableAdapter memberInformationTableAdapter;
+        private MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }
 
