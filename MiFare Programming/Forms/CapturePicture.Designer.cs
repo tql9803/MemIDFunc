@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CapturePicture));
             this.VVideoSource = new AForge.Controls.VideoSourcePlayer();
             this.pBPicture = new AForge.Controls.PictureBox();
             this.bCapture = new System.Windows.Forms.Button();
@@ -118,8 +119,10 @@
             this.Controls.Add(this.cbCamera);
             this.Controls.Add(this.pBPicture);
             this.Controls.Add(this.VVideoSource);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CapturePicture";
             this.Text = "CapturePicture";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_closing);
             this.Load += new System.EventHandler(this.CapturePicture_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pBPicture)).EndInit();
             this.ResumeLayout(false);

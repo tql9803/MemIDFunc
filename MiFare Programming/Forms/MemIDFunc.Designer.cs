@@ -29,11 +29,13 @@ namespace MainUI_namespace
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.bReset = new System.Windows.Forms.Button();
             this.bQuit = new System.Windows.Forms.Button();
             this.memberID_dbDataSet = new MemIDFunc_namespace.MemberID_dbDataSet();
             this.memIDBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.memIDTableAdapter = new MemIDFunc_namespace.MemberID_dbDataSetTableAdapters.MemIDTableAdapter();
+            this.bSCard = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.memberID_dbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memIDBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -41,7 +43,7 @@ namespace MainUI_namespace
             // bReset
             // 
             this.bReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bReset.BackColor = System.Drawing.Color.OrangeRed;
+            this.bReset.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.bReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bReset.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bReset.ForeColor = System.Drawing.Color.Blue;
@@ -57,7 +59,7 @@ namespace MainUI_namespace
             // bQuit
             // 
             this.bQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bQuit.BackColor = System.Drawing.Color.OrangeRed;
+            this.bQuit.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.bQuit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bQuit.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bQuit.ForeColor = System.Drawing.Color.Blue;
@@ -84,19 +86,37 @@ namespace MainUI_namespace
             // 
             this.memIDTableAdapter.ClearBeforeFill = true;
             // 
+            // bSCard
+            // 
+            this.bSCard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bSCard.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.bSCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bSCard.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bSCard.ForeColor = System.Drawing.Color.Blue;
+            this.bSCard.Location = new System.Drawing.Point(202, 211);
+            this.bSCard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bSCard.Name = "bSCard";
+            this.bSCard.Size = new System.Drawing.Size(150, 50);
+            this.bSCard.TabIndex = 9;
+            this.bSCard.Text = "Scan Card";
+            this.bSCard.UseVisualStyleBackColor = false;
+            this.bSCard.Click += new System.EventHandler(this.bSCard_Click);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.BackgroundImage = global::MemIDFunc_namespace.Properties.Resources.Logo11;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BackgroundImage = global::MemIDFunc_namespace.Properties.Resources.Logo1;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(556, 483);
+            this.Controls.Add(this.bSCard);
             this.Controls.Add(this.bReset);
             this.Controls.Add(this.bQuit);
             this.Font = new System.Drawing.Font("Malgun Gothic Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.IndianRed;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -117,6 +137,7 @@ namespace MainUI_namespace
         private MemIDFunc_namespace.MemberID_dbDataSet memberID_dbDataSet;
         private System.Windows.Forms.BindingSource memIDBindingSource;
         private MemIDFunc_namespace.MemberID_dbDataSetTableAdapters.MemIDTableAdapter memIDTableAdapter;
+        internal System.Windows.Forms.Button bSCard;
     }
 }
 

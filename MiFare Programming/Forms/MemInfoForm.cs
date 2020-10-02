@@ -60,7 +60,7 @@ namespace MemIDFunc_namespace
         {
             string buffer;
             string[] stringBuf;
-            char[] splitchar = { ',', ';' };
+            char[] splitchar = { ',', '\n' };
             int LengthOfFile;
 
             using (System.IO.StreamReader streamReader = new StreamReader(eventlogpath))
@@ -74,13 +74,13 @@ namespace MemIDFunc_namespace
             {
                 if (LengthOfFile % 2 == 0)
                 {
-                    streamWriter.Write(",");
+                    streamWriter.Write(System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm ,"));
                 }
                 else
                 {
-                    streamWriter.Write(";");
+                    streamWriter.Write(System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm \r\n"));
                 }
-                streamWriter.Write(System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm"));
+                
             }
 
             if (LengthOfFile % 2 == 0)

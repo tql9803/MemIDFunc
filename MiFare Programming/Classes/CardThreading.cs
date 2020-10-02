@@ -26,6 +26,7 @@ namespace MemIDFunc_namespace
         public string KeyNo;
 
         public bool Present = false;
+        public bool Success = false;
 
         public delegate void CardPresentEventHandler(object sender, EventArgs e);
         public event CardPresentEventHandler CardPresent;
@@ -56,21 +57,27 @@ namespace MemIDFunc_namespace
 
                 if (retCode == ModWinsCard.SCARD_S_SUCCESS)
                 {
+                    Success = true;
                     RdrState.RdrName = "ACS ACR122 0";
                     //Check Card Status
                     retCode = ModWinsCard.SCardGetStatusChangeA(this.hContext, 20000, ref RdrState, 1);
 
                     if (retCode == ModWinsCard.SCARD_S_SUCCESS)
                     {
+                        Success = true;
                         if ((Convert.ToUInt32(RdrState.RdrEventState) & ModWinsCard.SCARD_STATE_PRESENT) == ModWinsCard.SCARD_STATE_PRESENT)
                         {
                             retCode = ModWinsCard.SCardConnect(hContext, RdrState.RdrName, ModWinsCard.SCARD_SHARE_SHARED,
                                               ModWinsCard.SCARD_PROTOCOL_T0 | ModWinsCard.SCARD_PROTOCOL_T1, ref hCard, ref Protocol);
 
                             if (retCode != ModWinsCard.SCARD_S_SUCCESS)
+                            {
+                                Success = false;
                                 MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
+                            }                                
                             else
                             {
+                                Success = true;
                                 connActive = true;
                                 Present = true;
                             }                       
@@ -84,10 +91,17 @@ namespace MemIDFunc_namespace
                         }
                     }
                     else
+                    {
+                        Success = false;
                         MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
+                    }
+                        
                 }
-                else 
+                else
+                {
+                    Success = false;
                     MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
+                }
 
                 OnCardPresent();
                 OnCardAbsent();
@@ -230,12 +244,12 @@ namespace MemIDFunc_namespace
             SendBuff[2] = 0x00;                                                                        // P1 : Key Structure
             SendBuff[3] = 0x00; // key # 
             SendBuff[4] = 0x06;                                                                        // P3 : Lc
-            SendBuff[5] = 0xFF; // key input val
-            SendBuff[6] = 0xFF; // key input val
-            SendBuff[7] = 0xFF; // key input val
-            SendBuff[8] = 0xFF; // key input val
-            SendBuff[9] = 0xFF; // key input val
-            SendBuff[10] = 0xFF; // key input val
+            SendBuff[5] = 0xff; // key input val
+            SendBuff[6] = 0xff; // key input val
+            SendBuff[7] = 0xff; // key input val
+            SendBuff[8] = 0xff; // key input val
+            SendBuff[9] = 0xff; // key input val
+            SendBuff[10] = 0xff; // key input val
 
             SendLen = 11;
             RecvLen = 2;
