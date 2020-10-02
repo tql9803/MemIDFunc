@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using MemIDFunc_namespace;
 using System.Threading;
 using System.Threading.Tasks;
+using MemIDFunc_namespace.Properties;
 
 namespace MainUI_namespace
 {
@@ -28,29 +29,17 @@ namespace MainUI_namespace
         public ModWinsCard.SCARD_IO_REQUEST pioSendRequest;
 
         //Server Variable
-        public string connectionString;
-        public SqlConnection ServerConnect;
-        
-        //Delegates for new UI
-        public delegate void NewMemEventHandler(object sender, EventArgs e);
-        public event NewMemEventHandler NewMemTriggered;
-
-        public delegate void CheckInEventHandler(object sender, EventArgs e, object ds);
-        public event CheckInEventHandler CheckInTriggered;
-        //Delegates for Card resource fail
-        public delegate void CardResourceEventHandler(object sender, EventArgs e);
-        public event CardResourceEventHandler CardResourceFailed;
 
         public delegate void myVoiddelegate();
 
         //Add Member UI
         AddMemForm addMem;
         MemInfoForm infoform;
-        DatabaseAccess dbAccess = new DatabaseAccess();
+        DatabaseAccess dbAccess;
         public string KeyToWrite = "";
 
         //Global Thread
-        CardThreading CardThread = new CardThreading();
+        CardThreading CardThread;
         Task CardState;
         private object threadLock = new object();
 
@@ -62,15 +51,13 @@ namespace MainUI_namespace
 
         private void InitMenu()
         {
+            CardThread = new CardThreading();
+            dbAccess = new DatabaseAccess();
+
             connActive = false;
 
             dbAccess.NewMemTriggered += this.ExNewMemTriggered;
             dbAccess.CheckInTriggered += this.ExCheckInTriggered;
-            //this.CardResourceFailed += this.ExCardResourceReset;
-            connectionString = ConfigurationManager.ConnectionStrings["MemIDFunc_namespace.Properties.Settings.MemberID_dbConnectionString"].ConnectionString;
-
-            //CardState = new Task(CardThread.CardChecking);
-            //CardState.Start();
 
             CardState = new Task(CardThread.CardChecking.Invoke);
             CardState.Start();
@@ -78,68 +65,28 @@ namespace MainUI_namespace
             CardThread.CardPresent += this.AutoSetup;
             CardThread.CardAbsent += this.AutoReverse;
             CardThread.CardResourceFailed += this.ExCardResourceReset;
+
+            bSCard.Enabled = false;
         }
 
-        private void ClearBuffers()
-        {
 
-            long indx;
-
-            for (indx = 0; indx <= 262; indx++)
-            {
-
-                RecvBuff[indx] = 0;
-                SendBuff[indx] = 0;
-
-            }
-
-        }
-
-        public int SendAPDU()
-        {
-            int indx;
-            string tmpStr;
-
-            pioSendRequest.dwProtocol = Aprotocol;
-            pioSendRequest.cbPciLength = 8;
-
-            // Display Apdu In
-            tmpStr = "";
-            for (indx = 0; indx <= SendLen - 1; indx++)
-            {
-
-                tmpStr = tmpStr + " " + string.Format("{0:X2}", SendBuff[indx]);
-
-            }
-            retCode = ModWinsCard.SCardTransmit(CardThread.hCard, ref pioSendRequest, ref SendBuff[0], SendLen, ref pioSendRequest, ref RecvBuff[0], ref RecvLen);
-
-            if (retCode != ModWinsCard.SCARD_S_SUCCESS)
-            {
-                return retCode;
-            }
-
-            tmpStr = "";
-            for (indx = 0; indx <= RecvLen - 1; indx++)
-            {
-
-                tmpStr = tmpStr + " " + string.Format("{0:X2}", RecvBuff[indx]);
-
-            }
-            return retCode;
-
-        }
+        
 
         private void MiFareCardProg_Load(object sender, EventArgs e)
         {
             this.memIDTableAdapter.Fill(this.memberID_dbDataSet.MemID);
-            InitMenu();
+            bSCard.Enabled = true;
         }
 
         private void bReset_Click(object sender, EventArgs e)
         {
             CardThread.CardReseting.Invoke();
-            InitMenu();
+            bSCard.Enabled = true;
+        }
 
+        private void bSCard_Click(object sender, EventArgs e)
+        {
+            InitMenu();
         }
 
         private void bQuit_Click(object sender, EventArgs e)
@@ -154,8 +101,10 @@ namespace MainUI_namespace
 
         private void UI_OnSizeChanged(object sender, EventArgs e)
         {
-            this.bQuit.Location = new Point(this.ClientSize.Width / 2 - 75, this.ClientSize.Height * 9 / 10);
-            this.bReset.Location = new Point(this.ClientSize.Width / 2 + 75, this.ClientSize.Height * 9 / 10);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bSCard.Location = new Point(this.Size.Width / 2 - 75, this.Size.Height / 2);
+            this.bQuit.Location = new Point(this.Size.Width / 2 - 75 - 75, this.Size.Height * 9 / 10);
+            this.bReset.Location = new Point(this.Size.Width / 2 + 75 - 75, this.Size.Height * 9 / 10);
         }
 
         private void ExNewMemTriggered(object sender, EventArgs e)
@@ -171,7 +120,7 @@ namespace MainUI_namespace
             infoform = new MemInfoForm();
             infoform.DataSource = datasource;
             BeginInvoke(new myVoiddelegate(infoform.Show));
-            //infoform.UDatasource.Invoke(datasource);
+            infoform.FormClosed += new FormClosedEventHandler(MemInfoForm_Closed);
         }
 
         private void AddMemForm_Closing(object sender, EventArgs e)
@@ -185,8 +134,15 @@ namespace MainUI_namespace
                 infoform = new MemInfoForm();
                 infoform.DataSource = dbAccess.PopServerMem(CardThread.KeyNo);
                 BeginInvoke(new myVoiddelegate(infoform.Show));
+                infoform.FormClosed += new FormClosedEventHandler(MemInfoForm_Closed);
             }
 
+        }
+
+        private void MemInfoForm_Closed(object sender, EventArgs e)
+        {
+            infoform = (MemInfoForm)sender;
+            bSCard.Enabled = true;
         }
 
         private void ExCardResourceReset(object sender, EventArgs e)

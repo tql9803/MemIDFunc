@@ -67,8 +67,8 @@ namespace MemIDFunc_namespace
             string buPName = "", buPPhone = "", buPEmail = "";
             string buEMEName, buEMEPhone, buEMERel;
 
-            string SourceDocPath = @"D:\Project Door\NET Code\Cloned\MiFare Programming\Resources\Documents\";
-            string SaveAsDocPath = @"D:\Project Door\NET Code\Cloned\OutDocuments\";
+            string SourceDocPath = @"C:\MemIDDocument\SourceDocuments\";
+            string SaveAsDocPath = @"C:\MemIDDocument\ClientsDocuments\";
             KeyNo = "BGF";
 
             #region Member Info Verification 
@@ -195,7 +195,7 @@ namespace MemIDFunc_namespace
             date = System.DateTime.Now.ToString(" yyyy MM dd");
 
             SaveAsDocPath = SaveAsDocPath + buName + @"\";
-            System.IO.Directory.CreateDirectory(SaveAsDocPath);
+            DirectoryInfo DirInfo =  System.IO.Directory.CreateDirectory(SaveAsDocPath);
 
             if (cbMemDetail.SelectedItem.ToString() == "Drop-In")
             {
@@ -233,8 +233,8 @@ namespace MemIDFunc_namespace
         {
             using(System.IO.StreamWriter streamWriter = new StreamWriter(EventPath, true))
             {
-                streamWriter.WriteLine("Created" + System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm"));
-                streamWriter.WriteLine("Check-In , Check-Out");
+                streamWriter.Write("Created" + System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm") + "\r\n");
+                streamWriter.Write("Check-In , Check-Out \r\n");
             }
 
         }
@@ -363,6 +363,7 @@ namespace MemIDFunc_namespace
                 {
                     ReplacementMethod(wordApp, "[PARENT NAME]", ParentName);
                     ReplacementMethod(wordApp, "[PARENT PHONE]", ParentPhone);
+                    ReplacementMethod(wordApp, "[PARENT ADDRESS]", MemAdd);
                     ReplacementMethod(wordApp, "[PARENT EMAIL]", ParentEmail);
                 }
                 else

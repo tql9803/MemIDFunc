@@ -93,5 +93,10 @@ namespace MemIDFunc_namespace.Forms
             VVideoSource.SignalToStop();
             VVideoSource.WaitForStop();
         }
+
+        private void Form_closing(object sender, FormClosingEventArgs e)
+        {
+            StopCamera();
+        }
     }
 }

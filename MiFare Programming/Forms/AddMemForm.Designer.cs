@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMemForm));
             this.lName = new System.Windows.Forms.Label();
             this.lPhoneNum = new System.Windows.Forms.Label();
             this.lMemDe = new System.Windows.Forms.Label();
@@ -55,14 +56,16 @@
             this.lEName = new System.Windows.Forms.Label();
             this.lEPhone = new System.Windows.Forms.Label();
             this.lERel = new System.Windows.Forms.Label();
+            this.gBMain = new System.Windows.Forms.GroupBox();
             this.gParentInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gBMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // lName
             // 
             this.lName.AutoSize = true;
-            this.lName.Location = new System.Drawing.Point(12, 40);
+            this.lName.Location = new System.Drawing.Point(3, 29);
             this.lName.Name = "lName";
             this.lName.Size = new System.Drawing.Size(35, 13);
             this.lName.TabIndex = 0;
@@ -71,7 +74,7 @@
             // lPhoneNum
             // 
             this.lPhoneNum.AutoSize = true;
-            this.lPhoneNum.Location = new System.Drawing.Point(12, 65);
+            this.lPhoneNum.Location = new System.Drawing.Point(3, 54);
             this.lPhoneNum.Name = "lPhoneNum";
             this.lPhoneNum.Size = new System.Drawing.Size(78, 13);
             this.lPhoneNum.TabIndex = 0;
@@ -80,7 +83,7 @@
             // lMemDe
             // 
             this.lMemDe.AutoSize = true;
-            this.lMemDe.Location = new System.Drawing.Point(12, 140);
+            this.lMemDe.Location = new System.Drawing.Point(3, 129);
             this.lMemDe.Name = "lMemDe";
             this.lMemDe.Size = new System.Drawing.Size(94, 13);
             this.lMemDe.TabIndex = 0;
@@ -88,7 +91,7 @@
             // 
             // bAddPic
             // 
-            this.bAddPic.Location = new System.Drawing.Point(210, 173);
+            this.bAddPic.Location = new System.Drawing.Point(181, 174);
             this.bAddPic.Name = "bAddPic";
             this.bAddPic.Size = new System.Drawing.Size(75, 23);
             this.bAddPic.TabIndex = 8;
@@ -99,7 +102,7 @@
             // lAddress
             // 
             this.lAddress.AutoSize = true;
-            this.lAddress.Location = new System.Drawing.Point(12, 90);
+            this.lAddress.Location = new System.Drawing.Point(3, 79);
             this.lAddress.Name = "lAddress";
             this.lAddress.Size = new System.Drawing.Size(45, 13);
             this.lAddress.TabIndex = 0;
@@ -107,21 +110,21 @@
             // 
             // tName
             // 
-            this.tName.Location = new System.Drawing.Point(110, 40);
+            this.tName.Location = new System.Drawing.Point(81, 26);
             this.tName.Name = "tName";
             this.tName.Size = new System.Drawing.Size(175, 20);
             this.tName.TabIndex = 1;
             // 
             // tPhoneNum
             // 
-            this.tPhoneNum.Location = new System.Drawing.Point(110, 65);
+            this.tPhoneNum.Location = new System.Drawing.Point(81, 51);
             this.tPhoneNum.Name = "tPhoneNum";
             this.tPhoneNum.Size = new System.Drawing.Size(175, 20);
             this.tPhoneNum.TabIndex = 2;
             // 
             // tAddress
             // 
-            this.tAddress.Location = new System.Drawing.Point(110, 90);
+            this.tAddress.Location = new System.Drawing.Point(81, 76);
             this.tAddress.Name = "tAddress";
             this.tAddress.Size = new System.Drawing.Size(175, 20);
             this.tAddress.TabIndex = 3;
@@ -141,7 +144,7 @@
             // ckBUnderAge
             // 
             this.ckBUnderAge.AutoSize = true;
-            this.ckBUnderAge.Location = new System.Drawing.Point(81, 12);
+            this.ckBUnderAge.Location = new System.Drawing.Point(72, 1);
             this.ckBUnderAge.Name = "ckBUnderAge";
             this.ckBUnderAge.Size = new System.Drawing.Size(110, 17);
             this.ckBUnderAge.TabIndex = 0;
@@ -152,15 +155,15 @@
             // cbMemDetail
             // 
             this.cbMemDetail.FormattingEnabled = true;
-            this.cbMemDetail.Location = new System.Drawing.Point(110, 140);
+            this.cbMemDetail.Location = new System.Drawing.Point(103, 126);
             this.cbMemDetail.Name = "cbMemDetail";
-            this.cbMemDetail.Size = new System.Drawing.Size(175, 21);
+            this.cbMemDetail.Size = new System.Drawing.Size(153, 21);
             this.cbMemDetail.TabIndex = 5;
             // 
             // lMemEmail
             // 
             this.lMemEmail.AutoSize = true;
-            this.lMemEmail.Location = new System.Drawing.Point(12, 115);
+            this.lMemEmail.Location = new System.Drawing.Point(3, 104);
             this.lMemEmail.Name = "lMemEmail";
             this.lMemEmail.Size = new System.Drawing.Size(73, 13);
             this.lMemEmail.TabIndex = 0;
@@ -168,7 +171,7 @@
             // 
             // tMemEmail
             // 
-            this.tMemEmail.Location = new System.Drawing.Point(110, 115);
+            this.tMemEmail.Location = new System.Drawing.Point(81, 101);
             this.tMemEmail.Name = "tMemEmail";
             this.tMemEmail.Size = new System.Drawing.Size(175, 20);
             this.tMemEmail.TabIndex = 4;
@@ -300,26 +303,38 @@
             this.lERel.TabIndex = 0;
             this.lERel.Text = "Relationship";
             // 
+            // gBMain
+            // 
+            this.gBMain.Controls.Add(this.ckBUnderAge);
+            this.gBMain.Controls.Add(this.lAddress);
+            this.gBMain.Controls.Add(this.lMemEmail);
+            this.gBMain.Controls.Add(this.cbMemDetail);
+            this.gBMain.Controls.Add(this.bAddPic);
+            this.gBMain.Controls.Add(this.lMemDe);
+            this.gBMain.Controls.Add(this.tMemEmail);
+            this.gBMain.Controls.Add(this.lPhoneNum);
+            this.gBMain.Controls.Add(this.tAddress);
+            this.gBMain.Controls.Add(this.lName);
+            this.gBMain.Controls.Add(this.tPhoneNum);
+            this.gBMain.Controls.Add(this.tName);
+            this.gBMain.Location = new System.Drawing.Point(12, 15);
+            this.gBMain.Name = "gBMain";
+            this.gBMain.Size = new System.Drawing.Size(275, 209);
+            this.gBMain.TabIndex = 10;
+            this.gBMain.TabStop = false;
+            // 
             // AddMemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::MemIDFunc_namespace.Properties.Resources.Logo1;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(628, 285);
+            this.Controls.Add(this.gBMain);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gParentInfo);
-            this.Controls.Add(this.cbMemDetail);
-            this.Controls.Add(this.ckBUnderAge);
-            this.Controls.Add(this.tMemEmail);
-            this.Controls.Add(this.tAddress);
-            this.Controls.Add(this.tPhoneNum);
-            this.Controls.Add(this.tName);
             this.Controls.Add(this.bFinish);
-            this.Controls.Add(this.bAddPic);
-            this.Controls.Add(this.lAddress);
-            this.Controls.Add(this.lMemEmail);
-            this.Controls.Add(this.lMemDe);
-            this.Controls.Add(this.lPhoneNum);
-            this.Controls.Add(this.lName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddMemForm";
             this.Text = "Adding Member";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AtFormClosing);
@@ -328,8 +343,9 @@
             this.gParentInfo.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gBMain.ResumeLayout(false);
+            this.gBMain.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -362,5 +378,6 @@
         private System.Windows.Forms.Label lEName;
         private System.Windows.Forms.Label lEPhone;
         private System.Windows.Forms.Label lERel;
+        private System.Windows.Forms.GroupBox gBMain;
     }
 }

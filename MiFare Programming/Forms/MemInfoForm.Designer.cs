@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemInfoForm));
             this.memIDBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.memberID_dbDataSet = new MemIDFunc_namespace.MemberID_dbDataSet();
             this.memIDBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -88,6 +89,7 @@
             this.ClientSize = new System.Drawing.Size(1041, 574);
             this.Controls.Add(this.lGreeting);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MemInfoForm";
             this.Text = "MemInfoForm";
             this.Load += new System.EventHandler(this.MemInfoForm_Load);
