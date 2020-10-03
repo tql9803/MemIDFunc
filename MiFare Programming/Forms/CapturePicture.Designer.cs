@@ -61,9 +61,10 @@
             // bCapture
             // 
             this.bCapture.Enabled = false;
+            this.bCapture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bCapture.Location = new System.Drawing.Point(456, 55);
             this.bCapture.Name = "bCapture";
-            this.bCapture.Size = new System.Drawing.Size(75, 22);
+            this.bCapture.Size = new System.Drawing.Size(75, 25);
             this.bCapture.TabIndex = 12;
             this.bCapture.Text = "Capture";
             this.bCapture.UseVisualStyleBackColor = true;
@@ -72,18 +73,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(248, 38);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(276, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 11;
             this.label1.Text = "Camera";
             // 
             // bSave
             // 
             this.bSave.Enabled = false;
+            this.bSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bSave.Location = new System.Drawing.Point(375, 84);
             this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(75, 23);
+            this.bSave.Size = new System.Drawing.Size(75, 26);
             this.bSave.TabIndex = 9;
             this.bSave.Text = "Save";
             this.bSave.UseVisualStyleBackColor = true;
@@ -91,9 +94,10 @@
             // 
             // bStart
             // 
+            this.bStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bStart.Location = new System.Drawing.Point(375, 55);
             this.bStart.Name = "bStart";
-            this.bStart.Size = new System.Drawing.Size(75, 23);
+            this.bStart.Size = new System.Drawing.Size(75, 26);
             this.bStart.TabIndex = 10;
             this.bStart.Text = "Start";
             this.bStart.UseVisualStyleBackColor = true;
@@ -101,16 +105,19 @@
             // 
             // cbCamera
             // 
+            this.cbCamera.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCamera.FormattingEnabled = true;
             this.cbCamera.Location = new System.Drawing.Point(248, 57);
             this.cbCamera.Name = "cbCamera";
-            this.cbCamera.Size = new System.Drawing.Size(121, 21);
+            this.cbCamera.Size = new System.Drawing.Size(121, 28);
             this.cbCamera.TabIndex = 8;
             // 
             // CapturePicture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::MemIDFunc_namespace.Properties.Resources.Logo1;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(789, 542);
             this.Controls.Add(this.bCapture);
             this.Controls.Add(this.label1);
