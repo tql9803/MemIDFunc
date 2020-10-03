@@ -20,17 +20,17 @@ namespace MemIDFunc_namespace {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("MemberID_dbDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("MemberInfo_dbDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class MemberID_dbDataSet : global::System.Data.DataSet {
+    public partial class MemberInfo_dbDataSet : global::System.Data.DataSet {
         
-        private MemIDDataTable tableMemID;
+        private MemberInformationDataTable tableMemberInformation;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public MemberID_dbDataSet() {
+        public MemberInfo_dbDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace MemIDFunc_namespace {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected MemberID_dbDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected MemberInfo_dbDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace MemIDFunc_namespace {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["MemID"] != null)) {
-                    base.Tables.Add(new MemIDDataTable(ds.Tables["MemID"]));
+                if ((ds.Tables["MemberInformation"] != null)) {
+                    base.Tables.Add(new MemberInformationDataTable(ds.Tables["MemberInformation"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace MemIDFunc_namespace {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MemIDDataTable MemID {
+        public MemberInformationDataTable MemberInformation {
             get {
-                return this.tableMemID;
+                return this.tableMemberInformation;
             }
         }
         
@@ -127,7 +127,7 @@ namespace MemIDFunc_namespace {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            MemberID_dbDataSet cln = ((MemberID_dbDataSet)(base.Clone()));
+            MemberInfo_dbDataSet cln = ((MemberInfo_dbDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace MemIDFunc_namespace {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["MemID"] != null)) {
-                    base.Tables.Add(new MemIDDataTable(ds.Tables["MemID"]));
+                if ((ds.Tables["MemberInformation"] != null)) {
+                    base.Tables.Add(new MemberInformationDataTable(ds.Tables["MemberInformation"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace MemIDFunc_namespace {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableMemID = ((MemIDDataTable)(base.Tables["MemID"]));
+            this.tableMemberInformation = ((MemberInformationDataTable)(base.Tables["MemberInformation"]));
             if ((initTable == true)) {
-                if ((this.tableMemID != null)) {
-                    this.tableMemID.InitVars();
+                if ((this.tableMemberInformation != null)) {
+                    this.tableMemberInformation.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace MemIDFunc_namespace {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "MemberID_dbDataSet";
+            this.DataSetName = "MemberInfo_dbDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/MemberID_dbDataSet.xsd";
+            this.Namespace = "http://tempuri.org/MemberInfo_dbDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableMemID = new MemIDDataTable();
-            base.Tables.Add(this.tableMemID);
+            this.tableMemberInformation = new MemberInformationDataTable();
+            base.Tables.Add(this.tableMemberInformation);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeMemID() {
+        private bool ShouldSerializeMemberInformation() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace MemIDFunc_namespace {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            MemberID_dbDataSet ds = new MemberID_dbDataSet();
+            MemberInfo_dbDataSet ds = new MemberInfo_dbDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,16 +270,16 @@ namespace MemIDFunc_namespace {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void MemIDRowChangeEventHandler(object sender, MemIDRowChangeEvent e);
+        public delegate void MemberInformationRowChangeEventHandler(object sender, MemberInformationRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MemIDDataTable : global::System.Data.TypedTableBase<MemIDRow> {
+        public partial class MemberInformationDataTable : global::System.Data.TypedTableBase<MemberInformationRow> {
             
-            private global::System.Data.DataColumn columnID;
+            private global::System.Data.DataColumn columnId;
             
             private global::System.Data.DataColumn columnName;
             
@@ -301,8 +301,8 @@ namespace MemIDFunc_namespace {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MemIDDataTable() {
-                this.TableName = "MemID";
+            public MemberInformationDataTable() {
+                this.TableName = "MemberInformation";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -310,7 +310,7 @@ namespace MemIDFunc_namespace {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal MemIDDataTable(global::System.Data.DataTable table) {
+            internal MemberInformationDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -327,16 +327,16 @@ namespace MemIDFunc_namespace {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected MemIDDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected MemberInformationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
+            public global::System.Data.DataColumn IdColumn {
                 get {
-                    return this.columnID;
+                    return this.columnId;
                 }
             }
             
@@ -423,36 +423,36 @@ namespace MemIDFunc_namespace {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MemIDRow this[int index] {
+            public MemberInformationRow this[int index] {
                 get {
-                    return ((MemIDRow)(this.Rows[index]));
+                    return ((MemberInformationRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MemIDRowChangeEventHandler MemIDRowChanging;
+            public event MemberInformationRowChangeEventHandler MemberInformationRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MemIDRowChangeEventHandler MemIDRowChanged;
+            public event MemberInformationRowChangeEventHandler MemberInformationRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MemIDRowChangeEventHandler MemIDRowDeleting;
+            public event MemberInformationRowChangeEventHandler MemberInformationRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event MemIDRowChangeEventHandler MemIDRowDeleted;
+            public event MemberInformationRowChangeEventHandler MemberInformationRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddMemIDRow(MemIDRow row) {
+            public void AddMemberInformationRow(MemberInformationRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MemIDRow AddMemIDRow(string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog) {
-                MemIDRow rowMemIDRow = ((MemIDRow)(this.NewRow()));
+            public MemberInformationRow AddMemberInformationRow(int Id, string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog) {
+                MemberInformationRow rowMemberInformationRow = ((MemberInformationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
+                        Id,
                         Name,
                         PhoneNum,
                         Email,
@@ -462,22 +462,22 @@ namespace MemIDFunc_namespace {
                         Address,
                         MembershipDoc,
                         EventLog};
-                rowMemIDRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMemIDRow);
-                return rowMemIDRow;
+                rowMemberInformationRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMemberInformationRow);
+                return rowMemberInformationRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MemIDRow FindByID(int ID) {
-                return ((MemIDRow)(this.Rows.Find(new object[] {
-                            ID})));
+            public MemberInformationRow FindById(int Id) {
+                return ((MemberInformationRow)(this.Rows.Find(new object[] {
+                            Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                MemIDDataTable cln = ((MemIDDataTable)(base.Clone()));
+                MemberInformationDataTable cln = ((MemberInformationDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -485,13 +485,13 @@ namespace MemIDFunc_namespace {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new MemIDDataTable();
+                return new MemberInformationDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnId = base.Columns["Id"];
                 this.columnName = base.Columns["Name"];
                 this.columnPhoneNum = base.Columns["PhoneNum"];
                 this.columnEmail = base.Columns["Email"];
@@ -506,8 +506,8 @@ namespace MemIDFunc_namespace {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
                 this.columnPhoneNum = new global::System.Data.DataColumn("PhoneNum", typeof(string), null, global::System.Data.MappingType.Element);
@@ -527,23 +527,19 @@ namespace MemIDFunc_namespace {
                 this.columnEventLog = new global::System.Data.DataColumn("EventLog", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEventLog);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
-                this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
-                this.columnID.Unique = true;
+                                this.columnId}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
                 this.columnName.AllowDBNull = false;
                 this.columnName.MaxLength = 2147483647;
                 this.columnPhoneNum.AllowDBNull = false;
-                this.columnPhoneNum.MaxLength = 50;
+                this.columnPhoneNum.MaxLength = 2147483647;
                 this.columnEmail.AllowDBNull = false;
                 this.columnEmail.MaxLength = 2147483647;
                 this.columnMemDetail.AllowDBNull = false;
-                this.columnMemDetail.MaxLength = 50;
+                this.columnMemDetail.MaxLength = 2147483647;
                 this.columnKeyNum.AllowDBNull = false;
-                this.columnKeyNum.MaxLength = 50;
+                this.columnKeyNum.MaxLength = 2147483647;
                 this.columnPicture.AllowDBNull = false;
                 this.columnAddress.AllowDBNull = false;
                 this.columnAddress.MaxLength = 2147483647;
@@ -555,28 +551,28 @@ namespace MemIDFunc_namespace {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MemIDRow NewMemIDRow() {
-                return ((MemIDRow)(this.NewRow()));
+            public MemberInformationRow NewMemberInformationRow() {
+                return ((MemberInformationRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MemIDRow(builder);
+                return new MemberInformationRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(MemIDRow);
+                return typeof(MemberInformationRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.MemIDRowChanged != null)) {
-                    this.MemIDRowChanged(this, new MemIDRowChangeEvent(((MemIDRow)(e.Row)), e.Action));
+                if ((this.MemberInformationRowChanged != null)) {
+                    this.MemberInformationRowChanged(this, new MemberInformationRowChangeEvent(((MemberInformationRow)(e.Row)), e.Action));
                 }
             }
             
@@ -584,8 +580,8 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.MemIDRowChanging != null)) {
-                    this.MemIDRowChanging(this, new MemIDRowChangeEvent(((MemIDRow)(e.Row)), e.Action));
+                if ((this.MemberInformationRowChanging != null)) {
+                    this.MemberInformationRowChanging(this, new MemberInformationRowChangeEvent(((MemberInformationRow)(e.Row)), e.Action));
                 }
             }
             
@@ -593,8 +589,8 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.MemIDRowDeleted != null)) {
-                    this.MemIDRowDeleted(this, new MemIDRowChangeEvent(((MemIDRow)(e.Row)), e.Action));
+                if ((this.MemberInformationRowDeleted != null)) {
+                    this.MemberInformationRowDeleted(this, new MemberInformationRowChangeEvent(((MemberInformationRow)(e.Row)), e.Action));
                 }
             }
             
@@ -602,14 +598,14 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.MemIDRowDeleting != null)) {
-                    this.MemIDRowDeleting(this, new MemIDRowChangeEvent(((MemIDRow)(e.Row)), e.Action));
+                if ((this.MemberInformationRowDeleting != null)) {
+                    this.MemberInformationRowDeleting(this, new MemberInformationRowChangeEvent(((MemberInformationRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveMemIDRow(MemIDRow row) {
+            public void RemoveMemberInformationRow(MemberInformationRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -618,7 +614,7 @@ namespace MemIDFunc_namespace {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MemberID_dbDataSet ds = new MemberID_dbDataSet();
+                MemberInfo_dbDataSet ds = new MemberInfo_dbDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -636,7 +632,7 @@ namespace MemIDFunc_namespace {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MemIDDataTable";
+                attribute2.FixedValue = "MemberInformationDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -680,25 +676,25 @@ namespace MemIDFunc_namespace {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class MemIDRow : global::System.Data.DataRow {
+        public partial class MemberInformationRow : global::System.Data.DataRow {
             
-            private MemIDDataTable tableMemID;
+            private MemberInformationDataTable tableMemberInformation;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal MemIDRow(global::System.Data.DataRowBuilder rb) : 
+            internal MemberInformationRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableMemID = ((MemIDDataTable)(this.Table));
+                this.tableMemberInformation = ((MemberInformationDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int ID {
+            public int Id {
                 get {
-                    return ((int)(this[this.tableMemID.IDColumn]));
+                    return ((int)(this[this.tableMemberInformation.IdColumn]));
                 }
                 set {
-                    this[this.tableMemID.IDColumn] = value;
+                    this[this.tableMemberInformation.IdColumn] = value;
                 }
             }
             
@@ -706,10 +702,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Name {
                 get {
-                    return ((string)(this[this.tableMemID.NameColumn]));
+                    return ((string)(this[this.tableMemberInformation.NameColumn]));
                 }
                 set {
-                    this[this.tableMemID.NameColumn] = value;
+                    this[this.tableMemberInformation.NameColumn] = value;
                 }
             }
             
@@ -717,10 +713,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string PhoneNum {
                 get {
-                    return ((string)(this[this.tableMemID.PhoneNumColumn]));
+                    return ((string)(this[this.tableMemberInformation.PhoneNumColumn]));
                 }
                 set {
-                    this[this.tableMemID.PhoneNumColumn] = value;
+                    this[this.tableMemberInformation.PhoneNumColumn] = value;
                 }
             }
             
@@ -728,10 +724,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Email {
                 get {
-                    return ((string)(this[this.tableMemID.EmailColumn]));
+                    return ((string)(this[this.tableMemberInformation.EmailColumn]));
                 }
                 set {
-                    this[this.tableMemID.EmailColumn] = value;
+                    this[this.tableMemberInformation.EmailColumn] = value;
                 }
             }
             
@@ -739,10 +735,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string MemDetail {
                 get {
-                    return ((string)(this[this.tableMemID.MemDetailColumn]));
+                    return ((string)(this[this.tableMemberInformation.MemDetailColumn]));
                 }
                 set {
-                    this[this.tableMemID.MemDetailColumn] = value;
+                    this[this.tableMemberInformation.MemDetailColumn] = value;
                 }
             }
             
@@ -750,10 +746,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string KeyNum {
                 get {
-                    return ((string)(this[this.tableMemID.KeyNumColumn]));
+                    return ((string)(this[this.tableMemberInformation.KeyNumColumn]));
                 }
                 set {
-                    this[this.tableMemID.KeyNumColumn] = value;
+                    this[this.tableMemberInformation.KeyNumColumn] = value;
                 }
             }
             
@@ -761,10 +757,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public byte[] Picture {
                 get {
-                    return ((byte[])(this[this.tableMemID.PictureColumn]));
+                    return ((byte[])(this[this.tableMemberInformation.PictureColumn]));
                 }
                 set {
-                    this[this.tableMemID.PictureColumn] = value;
+                    this[this.tableMemberInformation.PictureColumn] = value;
                 }
             }
             
@@ -772,10 +768,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Address {
                 get {
-                    return ((string)(this[this.tableMemID.AddressColumn]));
+                    return ((string)(this[this.tableMemberInformation.AddressColumn]));
                 }
                 set {
-                    this[this.tableMemID.AddressColumn] = value;
+                    this[this.tableMemberInformation.AddressColumn] = value;
                 }
             }
             
@@ -783,10 +779,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string MembershipDoc {
                 get {
-                    return ((string)(this[this.tableMemID.MembershipDocColumn]));
+                    return ((string)(this[this.tableMemberInformation.MembershipDocColumn]));
                 }
                 set {
-                    this[this.tableMemID.MembershipDocColumn] = value;
+                    this[this.tableMemberInformation.MembershipDocColumn] = value;
                 }
             }
             
@@ -794,10 +790,10 @@ namespace MemIDFunc_namespace {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string EventLog {
                 get {
-                    return ((string)(this[this.tableMemID.EventLogColumn]));
+                    return ((string)(this[this.tableMemberInformation.EventLogColumn]));
                 }
                 set {
-                    this[this.tableMemID.EventLogColumn] = value;
+                    this[this.tableMemberInformation.EventLogColumn] = value;
                 }
             }
         }
@@ -806,22 +802,22 @@ namespace MemIDFunc_namespace {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class MemIDRowChangeEvent : global::System.EventArgs {
+        public class MemberInformationRowChangeEvent : global::System.EventArgs {
             
-            private MemIDRow eventRow;
+            private MemberInformationRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MemIDRowChangeEvent(MemIDRow row, global::System.Data.DataRowAction action) {
+            public MemberInformationRowChangeEvent(MemberInformationRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public MemIDRow Row {
+            public MemberInformationRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -837,7 +833,7 @@ namespace MemIDFunc_namespace {
         }
     }
 }
-namespace MemIDFunc_namespace.MemberID_dbDataSetTableAdapters {
+namespace MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters {
     
     
     /// <summary>
@@ -849,7 +845,7 @@ namespace MemIDFunc_namespace.MemberID_dbDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class MemIDTableAdapter : global::System.ComponentModel.Component {
+    public partial class MemberInformationTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -863,7 +859,7 @@ namespace MemIDFunc_namespace.MemberID_dbDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public MemIDTableAdapter() {
+        public MemberInformationTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -960,8 +956,8 @@ namespace MemIDFunc_namespace.MemberID_dbDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "MemID";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.DataSetTable = "MemberInformation";
+            tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("Name", "Name");
             tableMapping.ColumnMappings.Add("PhoneNum", "PhoneNum");
             tableMapping.ColumnMappings.Add("Email", "Email");
@@ -974,19 +970,15 @@ namespace MemIDFunc_namespace.MemberID_dbDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[MemID] WHERE (([ID] = @Original_ID) AND ([PhoneNum] = @Origina" +
-                "l_PhoneNum) AND ([MemDetail] = @Original_MemDetail) AND ([KeyNum] = @Original_Ke" +
-                "yNum))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[MemberInformation] WHERE (([Id] = @Original_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PhoneNum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PhoneNum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MemDetail", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MemDetail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KeyNum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KeyNum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[MemID] ([Name], [PhoneNum], [Email], [MemDetail], [KeyNum], [Picture], [Address], [MembershipDoc], [EventLog]) VALUES (@Name, @PhoneNum, @Email, @MemDetail, @KeyNum, @Picture, @Address, @MembershipDoc, @EventLog);
-SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog FROM MemID WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[MemberInformation] ([Id], [Name], [PhoneNum], [Email], [MemDetail], [KeyNum], [Picture], [Address], [MembershipDoc], [EventLog]) VALUES (@Id, @Name, @PhoneNum, @Email, @MemDetail, @KeyNum, @Picture, @Address, @MembershipDoc, @EventLog);
+SELECT Id, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog FROM MemberInformation WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PhoneNum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PhoneNum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -998,9 +990,10 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventLog", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventLog", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[MemID] SET [Name] = @Name, [PhoneNum] = @PhoneNum, [Email] = @Email, [MemDetail] = @MemDetail, [KeyNum] = @KeyNum, [Picture] = @Picture, [Address] = @Address, [MembershipDoc] = @MembershipDoc, [EventLog] = @EventLog WHERE (([ID] = @Original_ID) AND ([PhoneNum] = @Original_PhoneNum) AND ([MemDetail] = @Original_MemDetail) AND ([KeyNum] = @Original_KeyNum));
-SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog FROM MemID WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[MemberInformation] SET [Id] = @Id, [Name] = @Name, [PhoneNum] = @PhoneNum, [Email] = @Email, [MemDetail] = @MemDetail, [KeyNum] = @KeyNum, [Picture] = @Picture, [Address] = @Address, [MembershipDoc] = @MembershipDoc, [EventLog] = @EventLog WHERE (([Id] = @Original_Id));
+SELECT Id, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog FROM MemberInformation WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PhoneNum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PhoneNum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1010,18 +1003,14 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MembershipDoc", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MembershipDoc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventLog", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventLog", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PhoneNum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PhoneNum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MemDetail", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MemDetail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KeyNum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KeyNum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::MemIDFunc_namespace.Properties.Settings.Default.MemberID_dbConnectionString;
+            this._connection.ConnectionString = global::MemIDFunc_namespace.Properties.Settings.Default.MemberInfo_dbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1030,8 +1019,8 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membership" +
-                "Doc, EventLog FROM dbo.MemID";
+            this._commandCollection[0].CommandText = "SELECT Id, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membership" +
+                "Doc, EventLog FROM dbo.MemberInformation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1039,7 +1028,7 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MemberID_dbDataSet.MemIDDataTable dataTable) {
+        public virtual int Fill(MemberInfo_dbDataSet.MemberInformationDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1052,9 +1041,9 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MemberID_dbDataSet.MemIDDataTable GetData() {
+        public virtual MemberInfo_dbDataSet.MemberInformationDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MemberID_dbDataSet.MemIDDataTable dataTable = new MemberID_dbDataSet.MemIDDataTable();
+            MemberInfo_dbDataSet.MemberInformationDataTable dataTable = new MemberInfo_dbDataSet.MemberInformationDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1062,15 +1051,15 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MemberID_dbDataSet.MemIDDataTable dataTable) {
+        public virtual int Update(MemberInfo_dbDataSet.MemberInformationDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MemberID_dbDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "MemID");
+        public virtual int Update(MemberInfo_dbDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "MemberInformation");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1092,26 +1081,8 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_PhoneNum, string Original_MemDetail, string Original_KeyNum) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
-            if ((Original_PhoneNum == null)) {
-                throw new global::System.ArgumentNullException("Original_PhoneNum");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_PhoneNum));
-            }
-            if ((Original_MemDetail == null)) {
-                throw new global::System.ArgumentNullException("Original_MemDetail");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_MemDetail));
-            }
-            if ((Original_KeyNum == null)) {
-                throw new global::System.ArgumentNullException("Original_KeyNum");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_KeyNum));
-            }
+        public virtual int Delete(int Original_Id) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1132,60 +1103,61 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog) {
+        public virtual int Insert(int Id, string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Name));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Name));
             }
             if ((PhoneNum == null)) {
                 throw new global::System.ArgumentNullException("PhoneNum");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(PhoneNum));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(PhoneNum));
             }
             if ((Email == null)) {
                 throw new global::System.ArgumentNullException("Email");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Email));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Email));
             }
             if ((MemDetail == null)) {
                 throw new global::System.ArgumentNullException("MemDetail");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(MemDetail));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(MemDetail));
             }
             if ((KeyNum == null)) {
                 throw new global::System.ArgumentNullException("KeyNum");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(KeyNum));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(KeyNum));
             }
             if ((Picture == null)) {
                 throw new global::System.ArgumentNullException("Picture");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((byte[])(Picture));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((byte[])(Picture));
             }
             if ((Address == null)) {
                 throw new global::System.ArgumentNullException("Address");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Address));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Address));
             }
             if ((MembershipDoc == null)) {
                 throw new global::System.ArgumentNullException("MembershipDoc");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(MembershipDoc));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(MembershipDoc));
             }
             if ((EventLog == null)) {
                 throw new global::System.ArgumentNullException("EventLog");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(EventLog));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(EventLog));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1207,81 +1179,63 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog, int Original_ID, string Original_PhoneNum, string Original_MemDetail, string Original_KeyNum, int ID) {
+        public virtual int Update(int Id, string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog, int Original_Id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Name));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Name));
             }
             if ((PhoneNum == null)) {
                 throw new global::System.ArgumentNullException("PhoneNum");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(PhoneNum));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(PhoneNum));
             }
             if ((Email == null)) {
                 throw new global::System.ArgumentNullException("Email");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Email));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Email));
             }
             if ((MemDetail == null)) {
                 throw new global::System.ArgumentNullException("MemDetail");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(MemDetail));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(MemDetail));
             }
             if ((KeyNum == null)) {
                 throw new global::System.ArgumentNullException("KeyNum");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(KeyNum));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(KeyNum));
             }
             if ((Picture == null)) {
                 throw new global::System.ArgumentNullException("Picture");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((byte[])(Picture));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((byte[])(Picture));
             }
             if ((Address == null)) {
                 throw new global::System.ArgumentNullException("Address");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Address));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Address));
             }
             if ((MembershipDoc == null)) {
                 throw new global::System.ArgumentNullException("MembershipDoc");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(MembershipDoc));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(MembershipDoc));
             }
             if ((EventLog == null)) {
                 throw new global::System.ArgumentNullException("EventLog");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(EventLog));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(EventLog));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ID));
-            if ((Original_PhoneNum == null)) {
-                throw new global::System.ArgumentNullException("Original_PhoneNum");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_PhoneNum));
-            }
-            if ((Original_MemDetail == null)) {
-                throw new global::System.ArgumentNullException("Original_MemDetail");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_MemDetail));
-            }
-            if ((Original_KeyNum == null)) {
-                throw new global::System.ArgumentNullException("Original_KeyNum");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_KeyNum));
-            }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1302,8 +1256,8 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog, int Original_ID, string Original_PhoneNum, string Original_MemDetail, string Original_KeyNum) {
-            return this.Update(Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog, Original_ID, Original_PhoneNum, Original_MemDetail, Original_KeyNum, Original_ID);
+        public virtual int Update(string Name, string PhoneNum, string Email, string MemDetail, string KeyNum, byte[] Picture, string Address, string MembershipDoc, string EventLog, int Original_Id) {
+            return this.Update(Original_Id, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog, Original_Id);
         }
     }
     
@@ -1319,7 +1273,7 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         
         private UpdateOrderOption _updateOrder;
         
-        private MemIDTableAdapter _memIDTableAdapter;
+        private MemberInformationTableAdapter _memberInformationTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -1341,12 +1295,12 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public MemIDTableAdapter MemIDTableAdapter {
+        public MemberInformationTableAdapter MemberInformationTableAdapter {
             get {
-                return this._memIDTableAdapter;
+                return this._memberInformationTableAdapter;
             }
             set {
-                this._memIDTableAdapter = value;
+                this._memberInformationTableAdapter = value;
             }
         }
         
@@ -1369,9 +1323,9 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._memIDTableAdapter != null) 
-                            && (this._memIDTableAdapter.Connection != null))) {
-                    return this._memIDTableAdapter.Connection;
+                if (((this._memberInformationTableAdapter != null) 
+                            && (this._memberInformationTableAdapter.Connection != null))) {
+                    return this._memberInformationTableAdapter.Connection;
                 }
                 return null;
             }
@@ -1386,7 +1340,7 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._memIDTableAdapter != null)) {
+                if ((this._memberInformationTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -1398,14 +1352,14 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateUpdatedRows(MemberID_dbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(MemberInfo_dbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._memIDTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.MemID.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._memberInformationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.MemberInformation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._memIDTableAdapter.Update(updatedRows));
+                    result = (result + this._memberInformationTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -1417,13 +1371,13 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateInsertedRows(MemberID_dbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(MemberInfo_dbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._memIDTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.MemID.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._memberInformationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.MemberInformation.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._memIDTableAdapter.Update(addedRows));
+                    result = (result + this._memberInformationTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -1435,13 +1389,13 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateDeletedRows(MemberID_dbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(MemberInfo_dbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._memIDTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.MemID.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._memberInformationTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.MemberInformation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._memIDTableAdapter.Update(deletedRows));
+                    result = (result + this._memberInformationTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -1477,15 +1431,15 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public virtual int UpdateAll(MemberID_dbDataSet dataSet) {
+        public virtual int UpdateAll(MemberInfo_dbDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._memIDTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._memIDTableAdapter.Connection) == false))) {
+            if (((this._memberInformationTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._memberInformationTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -1521,13 +1475,13 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._memIDTableAdapter != null)) {
-                    revertConnections.Add(this._memIDTableAdapter, this._memIDTableAdapter.Connection);
-                    this._memIDTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._memIDTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._memIDTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._memIDTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._memIDTableAdapter.Adapter);
+                if ((this._memberInformationTableAdapter != null)) {
+                    revertConnections.Add(this._memberInformationTableAdapter, this._memberInformationTableAdapter.Connection);
+                    this._memberInformationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._memberInformationTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._memberInformationTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._memberInformationTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._memberInformationTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -1588,9 +1542,9 @@ SELECT ID, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._memIDTableAdapter != null)) {
-                    this._memIDTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._memIDTableAdapter]));
-                    this._memIDTableAdapter.Transaction = null;
+                if ((this._memberInformationTableAdapter != null)) {
+                    this._memberInformationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._memberInformationTableAdapter]));
+                    this._memberInformationTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

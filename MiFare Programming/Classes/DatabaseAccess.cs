@@ -29,7 +29,7 @@ namespace MemIDFunc_namespace
 
         public DatabaseAccess()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["MemIDFunc_namespace.Properties.Settings.MemberID_dbConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["MemIDFunc_namespace.Properties.Settings.MemberInfo_dbConnectionString"].ConnectionString;
             
 
         }
@@ -38,7 +38,7 @@ namespace MemIDFunc_namespace
         public DataTable PopServerMem(string KeyNo)
         {
             DataTable datasource = new DataTable();
-            string query = "select [Name], [PhoneNum], [Picture], [EventLog] from [MemID] " + "where  KeyNum = @ReadKey";
+            string query = "select [Name], [PhoneNum], [Picture], [EventLog] from [MemberInformation] " + "where  KeyNum = @ReadKey";
 
             using (ServerConnect = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, ServerConnect))
@@ -54,7 +54,7 @@ namespace MemIDFunc_namespace
 
         public void CkDatabase(string KeyNo)
         {
-            string query = "select [Name], [PhoneNum], [Picture], [EventLog] from [MemID] " + "where  KeyNum = @ReadKey";
+            string query = "select [Name], [PhoneNum], [Picture], [EventLog] from [MemberInformation] " + "where  KeyNum = @ReadKey";
             int RowAffected;
             DataTable buffer = new DataTable();
 
@@ -85,7 +85,7 @@ namespace MemIDFunc_namespace
             string KeyNo, byte[] picture, string buAdd, string MembershipDoc, string EventLog)
         {
 
-            string query = "INSERT INTO MemID (Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog)" +
+            string query = "INSERT INTO MemberInformation (Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog)" +
                 " VALUES " + "(@MemName, @MemPhoneNum, @MemEmail, @Memdetail, @KeyNum, @Picture, @MemAdd, @MemDoc, @Log)";
 
             using (ServerConnect = new SqlConnection(connectionString))

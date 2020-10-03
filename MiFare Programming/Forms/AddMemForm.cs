@@ -33,7 +33,6 @@ namespace MemIDFunc_namespace
         private string memberpath = "Membership Agreement.v1.docx";
         private string[] memDetails;
         private Image MemberImage;
-        private string EventPath;
         private CapturePicture CapPic;
 
         public AddMemForm()
@@ -212,8 +211,9 @@ namespace MemIDFunc_namespace
                     buAdd, buPhone, buEmail, buPName, buPPhone, buPEmail);
             }
 
+            string EventPath;
             EventPath = SaveAsDocPath + "EventLog " + buName + date + ".csv";
-            CreateEventLog();
+            CreateEventLog(EventPath);
 
             byte[] defaultPics;
 
@@ -229,7 +229,7 @@ namespace MemIDFunc_namespace
             
         }
 
-        private void CreateEventLog()
+        private void CreateEventLog(string EventPath)
         {
             using(System.IO.StreamWriter streamWriter = new StreamWriter(EventPath, true))
             {
