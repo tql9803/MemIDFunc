@@ -28,37 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemInfoForm));
-            this.memberInfo_dbDataSet = new MemIDFunc_namespace.MemberInfo_dbDataSet();
-            this.memIDBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.memIDTableAdapter = new MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters.MemberInformationTableAdapter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lGreeting = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.memIDBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memberInfo_dbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memIDBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // memIDBindingSource1
-            // 
-            this.memIDBindingSource1.DataMember = "MemID";
-            this.memIDBindingSource1.DataSource = this.memberInfo_dbDataSet;
-            // 
-            // memberInfo_dbDataSet
-            // 
-            this.memberInfo_dbDataSet.DataSetName = "memberInfo_dbDataSet";
-            this.memberInfo_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // memIDBindingSource
-            // 
-            this.memIDBindingSource.DataMember = "MemID";
-            this.memIDBindingSource.DataSource = this.memberInfo_dbDataSet;
-            // 
-            // memIDTableAdapter
-            // 
-            this.memIDTableAdapter.ClearBeforeFill = true;
             // 
             // pictureBox1
             // 
@@ -92,9 +66,6 @@
             this.Name = "MemInfoForm";
             this.Text = "MemInfoForm";
             this.Load += new System.EventHandler(this.MemInfoForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.memIDBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memberInfo_dbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memIDBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -102,11 +73,7 @@
         }
 
         #endregion
-        private MemberInfo_dbDataSet memberInfo_dbDataSet;
-        private System.Windows.Forms.BindingSource memIDBindingSource;
-        private MemberInfo_dbDataSetTableAdapters.MemberInformationTableAdapter memIDTableAdapter;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.BindingSource memIDBindingSource1;
         private System.Windows.Forms.Label lGreeting;
     }
 }
