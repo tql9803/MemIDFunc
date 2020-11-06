@@ -13,6 +13,7 @@ using MemIDFunc_namespace;
 using System.Threading;
 using System.Threading.Tasks;
 using MemIDFunc_namespace.Properties;
+using MemIDFunc_namespace.Classes;
 
 namespace MainUI_namespace
 {
@@ -28,6 +29,7 @@ namespace MainUI_namespace
         public ModWinsCard.SCARD_READERSTATE RdrState;
         public ModWinsCard.SCARD_IO_REQUEST pioSendRequest;
 
+        private MemberClass MainMember;
         //Server Variable
 
         public delegate void myVoiddelegate();
@@ -46,7 +48,7 @@ namespace MainUI_namespace
 
         public MainUI()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void InitMenu()
@@ -77,6 +79,8 @@ namespace MainUI_namespace
             // TODO: This line of code loads data into the 'memberInfo_dbDataSet.MemberInformation' table. You can move, or remove it, as needed.
             this.memberInformationTableAdapter.Fill(this.memberInfo_dbDataSet.MemberInformation);
             bSCard.Enabled = true;
+
+            MainMember = new MemberClass();
         }
 
         private void bReset_Click(object sender, EventArgs e)
@@ -119,6 +123,7 @@ namespace MainUI_namespace
         private void ExNewMemTriggered(object sender, EventArgs e)
         {
             addMem = new AddMemForm();
+            addMem.KeyNo = CardThread.KeyNo;
             BeginInvoke(new myVoiddelegate(addMem.Show));
             addMem.FormClosing += new FormClosingEventHandler(AddMemForm_Closing);
         }
@@ -137,8 +142,10 @@ namespace MainUI_namespace
             addMem = (AddMemForm)sender;
             if (addMem.DBUpdated)
             {
-                CardThread.KeyNo = addMem.KeyNo;
-                CardThread.CardWriting.Invoke();
+                this.MainMember = addMem.NewMem;
+
+                //CardThread.KeyNo = addMem.KeyNo;
+                //CardThread.CardWriting.Invoke();
                 //WriteToCard(addMem.KeyNo);
                 infoform = new MemInfoForm();
                 infoform.DataSource = dbAccess.PopServerMem(CardThread.KeyNo);

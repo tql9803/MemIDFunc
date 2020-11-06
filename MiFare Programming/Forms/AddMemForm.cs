@@ -17,12 +17,13 @@ using System.Reflection;
 using Microsoft.Office.Interop.Word;
 using System.IO;
 using MemIDFunc_namespace.Forms;
+using MemIDFunc_namespace.Classes;
+using System.Globalization;
 
 namespace MemIDFunc_namespace
 {
     public partial class AddMemForm : Form
     {
-        public string KeyNo;
 
         public bool DBUpdated = false;
         private DatabaseAccess DBAccess;
@@ -31,10 +32,11 @@ namespace MemIDFunc_namespace
         private string date;
         private string waiverpath = "Waiver.docx";
         private string memberpath = "Membership Agreement.v1.docx";
-        private string[] memDetails;
         private Image MemberImage;
         private CapturePicture CapPic;
 
+        public MemberClass NewMem;
+        public string KeyNo;
         public AddMemForm()
         {
             InitializeComponent();
@@ -42,15 +44,24 @@ namespace MemIDFunc_namespace
 
         private void AddMemForm_Load(object sender, EventArgs e)
         {
+            string[] memDetails, IDType;
 
             DBAccess = new DatabaseAccess();
 
             memDetails = new string[4] { "Drop-In", "1-Month", "4-Month", "12-Month" };
+            IDType = new string[3] { "Driver License", "Passport", "Other" };
 
             cbMemDetail.Items.AddRange(memDetails);
             cbMemDetail.SelectedItem = "Drop-In";
 
+            cbIDType.Items.AddRange(IDType);
+            cbIDType.SelectedItem = "Driver License";
+
+            date = System.DateTime.Today.ToString(" yyyy MM dd");
+
+            tEffDate.Text = date;
             gParentInfo.Enabled = false;
+            gbMemDetail.Enabled = false;
         }
 
         private void bFinish_Click(object sender, EventArgs e)
@@ -63,12 +74,14 @@ namespace MemIDFunc_namespace
         private void FinalizeDoc()
         {
             string buName, buPhone, buMdetail, buAdd, buEmail;
+            DateTime buEffDate, buDOB = new DateTime();
             string buPName = "", buPPhone = "", buPEmail = "";
+            string buMemID = "", buIDType = "";
             string buEMEName, buEMEPhone, buEMERel;
 
             string SourceDocPath = @"C:\MemIDDocument\SourceDocuments\";
             string SaveAsDocPath = @"C:\MemIDDocument\ClientsDocuments\";
-            KeyNo = "BGF";
+            string SavePath = "";
 
             #region Member Info Verification 
             if (tName.Text == "")
@@ -108,8 +121,57 @@ namespace MemIDFunc_namespace
                 buEmail = tMemEmail.Text;
 
             buMdetail = cbMemDetail.SelectedItem.ToString();
+            buEffDate = DateTime.ParseExact(tEffDate.Text," yyyy MM dd", CultureInfo.InvariantCulture);
+
+            SaveAsDocPath = SaveAsDocPath + buName + @"\";
+            DirectoryInfo DirInfo = System.IO.Directory.CreateDirectory(SaveAsDocPath);
 
             #endregion Member Info Verification
+
+            #region Membership Detail Verification
+
+            if (cbMemDetail.SelectedItem.ToString() != "Drop-In")
+            {
+
+                if (tDOB.Text == "")
+                {
+                    tDOB.Focus();
+                    tDOB.Text = "";
+                    return;
+                }
+                else
+                    try {
+                        buDOB = DateTime.ParseExact(tDOB.Text, "yyyy MM dd", CultureInfo.InvariantCulture); 
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show("Date Format: yyyy MM dd");
+                    }
+
+
+                if (tMemID.Text == "")
+                    {
+                        tMemID.Focus();
+                        tMemID.Text = "";
+                        return;
+                    }
+                else
+                    buMemID = tMemID.Text;
+
+                buIDType = cbIDType.SelectedItem.ToString();
+
+                SavePath = SaveAsDocPath + "Membership " + buName + date + ".docx";
+
+
+            }
+            else
+            {
+                SavePath = SaveAsDocPath + "Waiver " + buName + date + ".docx";
+
+
+            }
+
+            #endregion
 
             #region Emegency Contact varification
             if (tEMEName.Text == "")
@@ -140,19 +202,6 @@ namespace MemIDFunc_namespace
                 buEMERel = tEMERel.Text;
 
             #endregion Emegency Contact varification
-
-            #region KeyNO Generation
-
-            string[] buff = buName.Split(' ');
-            for (int i = 0; i < buff.Length; i++)
-            {
-                KeyNo = KeyNo + buff[i][0];
-            }
-
-            KeyNo = KeyNo + cbMemDetail.SelectedItem.ToString();
-
-
-            #endregion KeyNO Generation
 
             #region Under Age Check
 
@@ -188,45 +237,55 @@ namespace MemIDFunc_namespace
             }
 
             #endregion Under Age Check
+
+            #region Take Picture
+
+            byte[] ConvertedPics;
+
+            MemberImage = CapPic.SaveImage;
+            ConvertedPics = ConvertPicture(MemberImage);
+
+            #endregion
+
+            #region Create Path
+            
+            string EventPath;
+            EventPath = SaveAsDocPath + "EventLog " + buName + date + ".csv";
+
+            #endregion
+
+            #region Set NewMem
+            NewMem = new MemberClass();
+
+            NewMem.CreateNewMember(buName, buDOB, buIDType, buMemID, buPhone, buEmail, buMdetail,
+                KeyNo, ConvertedPics, buAdd, SavePath, EventPath, buEffDate);
+            #endregion
             //////////////////////////////////////////////////
 
-            string SavePath = "";
-            date = System.DateTime.Now.ToString(" yyyy MM dd");
-
-            SaveAsDocPath = SaveAsDocPath + buName + @"\";
-            DirectoryInfo DirInfo =  System.IO.Directory.CreateDirectory(SaveAsDocPath);
 
             if (cbMemDetail.SelectedItem.ToString() == "Drop-In")
             {
-                SavePath = SaveAsDocPath + "Waiver "     + buName + date + ".docx";
-
                 SignWaiverMethod(SourceDocPath + waiverpath, SavePath, buName,
-                    buAdd, buPhone, buEmail, buPName, buPPhone, buPEmail, buEMEName, buEMEPhone, buEMERel);
+                    buAdd, buPhone, buEmail, buPName, buPPhone, buPEmail, buEMEName,
+                    buEMEPhone, buEMERel, buEffDate.Date.ToString("yyyy/MM/dd"));
             }
             else
             {
-                SavePath = SaveAsDocPath + "Membership " + buName + date + ".docx";
-
-                SignMembershipMethod(SourceDocPath + memberpath, SavePath, buName, 
-                    buAdd, buPhone, buEmail, buPName, buPPhone, buPEmail);
+                SignMembershipMethod(SourceDocPath + memberpath, SavePath, buName,
+                    buAdd, buPhone, buEmail, buDOB.Date.ToString("yyyy/MM/dd"), buMemID,
+                    buPName, buPPhone, buPEmail, buEMEName,
+                    buEMEPhone, buEMERel, buEffDate.Date.ToString("yyyy/MM/dd"));
             }
 
-            string EventPath;
-            EventPath = SaveAsDocPath + "EventLog " + buName + date + ".csv";
+            
             CreateEventLog(EventPath);
-
-            byte[] defaultPics;
-
-            MemberImage = CapPic.SaveImage;
-            defaultPics = ConvertPicture(MemberImage);
-
-            DBAccess.UpdateDB(buName, buPhone, buEmail, buMdetail, KeyNo, defaultPics,
-                buAdd, SavePath, EventPath);
-            DBUpdated = true;
 
 
             OpentoSignMethod(SavePath);
-            
+
+            DBAccess.UpdateDB(NewMem);
+            DBUpdated = true;
+
         }
 
         private void CreateEventLog(string EventPath)
@@ -272,7 +331,7 @@ namespace MemIDFunc_namespace
 
         private void SignWaiverMethod(object TempFile, object SaveFile, object MemName, object MemAdd,
             object MemPhone, object MemEmail, object ParentName, object ParentPhone, object ParentEmail,
-            object EMEName, object EMEPhone, object EMERel)
+            object EMEName, object EMEPhone, object EMERel, object EffDate)
         {
             Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
@@ -314,7 +373,7 @@ namespace MemIDFunc_namespace
                     ReplacementMethod(wordApp, "[PARENT EMAIL]", null);
                 }
 
-                ReplacementMethod(wordApp, "[DATE]", date);
+                ReplacementMethod(wordApp, "[DATE]", EffDate);
 
                 myDocument.SaveAs2(ref SaveFile, ref missing, ref missing, ref missing, ref missing, ref missing,
                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
@@ -333,10 +392,9 @@ namespace MemIDFunc_namespace
         }
 
         private void SignMembershipMethod(object TempFile, object SaveFile, object MemName, object MemAdd,
-            object MemPhone, object MemEmail, object ParentName, object ParentPhone, object ParentEmail)
+            object MemPhone, object MemEmail, object MemDOB, object MemID, object ParentName, object ParentPhone, object ParentEmail,
+            object EMEName, object EMEPhone, object EMERel, object EffDate)
         {
-            date = System.DateTime.Now.ToString("yyyy-mm-dd");
-
             Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
             Word.Document myDocument = null;
@@ -359,6 +417,13 @@ namespace MemIDFunc_namespace
                 ReplacementMethod(wordApp, "[MEMBER PHONE]", MemPhone);
                 ReplacementMethod(wordApp, "[MEMBER EMAIL]", MemEmail);
 
+                ReplacementMethod(wordApp, "[MEMBER DOB]", MemDOB);
+                ReplacementMethod(wordApp, "[MEMBER IDENTIFICATION]", MemID);
+
+                ReplacementMethod(wordApp, "[EME NAME]", EMEName);
+                ReplacementMethod(wordApp, "[EME PHONE]", EMEPhone);
+                ReplacementMethod(wordApp, "[EME RELATIONSHIP]", EMERel);
+
                 if (UnderAge)
                 {
                     ReplacementMethod(wordApp, "[PARENT NAME]", ParentName);
@@ -370,10 +435,11 @@ namespace MemIDFunc_namespace
                 {
                     ReplacementMethod(wordApp, "[PARENT NAME]", null);
                     ReplacementMethod(wordApp, "[PARENT PHONE]", null);
+                    ReplacementMethod(wordApp, "[PARENT ADDRESS]", null);
                     ReplacementMethod(wordApp, "[PARENT EMAIL]", null);
                 }
 
-                ReplacementMethod(wordApp, "[DATE]", date);
+                ReplacementMethod(wordApp, "[DATE]", EffDate);
 
                 myDocument.SaveAs2(ref SaveFile, ref missing, ref missing, ref missing, ref missing, ref missing,
                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
@@ -450,6 +516,15 @@ namespace MemIDFunc_namespace
         private void ExPictureAdded(object sender, EventArgs e)
         {
             bFinish.Enabled = true;
+        }
+
+        private void MemDetail_Changed(object sender, EventArgs e)
+        {
+            if (cbMemDetail.SelectedItem.ToString() == "Drop-In")
+                gbMemDetail.Enabled = false;
+            else
+                gbMemDetail.Enabled = true;
+            
         }
     }
 }

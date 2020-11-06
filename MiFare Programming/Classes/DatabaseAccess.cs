@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Data;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using MemIDFunc_namespace.Classes;
 
 namespace MemIDFunc_namespace
 {
@@ -81,27 +82,32 @@ namespace MemIDFunc_namespace
             }
         }
 
-        public void UpdateDB(string buName, string buPhone, string buEmail, string buMdetail,
-            string KeyNo, byte[] picture, string buAdd, string MembershipDoc, string EventLog)
+        public void UpdateDB(MemberClass newMem)
         {
 
-            string query = "INSERT INTO MemberInformation (Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog)" +
-                " VALUES " + "(@MemName, @MemPhoneNum, @MemEmail, @Memdetail, @KeyNum, @Picture, @MemAdd, @MemDoc, @Log)";
+            string query = "INSERT INTO MemberInformation (Name, DOB, IDType, MemberID, PhoneNum," +
+                " Email, MemDetail, KeyNum, Picture, Address, MembershipDoc, EventLog, EffDate)" +
+                " VALUES " + "(@MemName, @MemDOB, @MemIDType, @MemID, @MemPhoneNum, @MemEmail," +
+                " @Memdetail, @KeyNum, @Picture, @MemAdd, @MemDoc, @Log, @Effective)";
 
             using (ServerConnect = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, ServerConnect))
             {
                 ServerConnect.Open();
 
-                command.Parameters.AddWithValue("@MemName", buName);
-                command.Parameters.AddWithValue("@MemPhoneNum", buPhone);
-                command.Parameters.AddWithValue("@MemEmail", buEmail);
-                command.Parameters.AddWithValue("@Memdetail", buMdetail);
-                command.Parameters.AddWithValue("@KeyNum", KeyNo);
-                command.Parameters.AddWithValue("@Picture", picture);
-                command.Parameters.AddWithValue("@MemAdd", buAdd);
-                command.Parameters.AddWithValue("@MemDoc", MembershipDoc);
-                command.Parameters.AddWithValue("@Log", EventLog);
+                command.Parameters.AddWithValue("@MemName", newMem.Name);
+                command.Parameters.AddWithValue("@MemDOB", newMem.DOB.Date);
+                command.Parameters.AddWithValue("@MemIDType", newMem.IDType);
+                command.Parameters.AddWithValue("@MemID", newMem.MemberID);
+                command.Parameters.AddWithValue("@MemPhoneNum", newMem.PhoneNum);
+                command.Parameters.AddWithValue("@MemEmail", newMem.Email);
+                command.Parameters.AddWithValue("@Memdetail", newMem.MemDetail);
+                command.Parameters.AddWithValue("@KeyNum", newMem.KeyNum);
+                command.Parameters.AddWithValue("@Picture", newMem.Picture);
+                command.Parameters.AddWithValue("@MemAdd", newMem.Address);
+                command.Parameters.AddWithValue("@MemDoc", newMem.MembershipDoc);
+                command.Parameters.AddWithValue("@Log", newMem.EventLog);
+                command.Parameters.AddWithValue("@Effective", newMem.EffDate.Date);
 
                 int testa;
                 testa = command.ExecuteNonQuery();

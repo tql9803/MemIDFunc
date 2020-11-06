@@ -128,7 +128,7 @@
             this.Controls.Add(this.VVideoSource);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CapturePicture";
-            this.Text = "CapturePicture";
+            this.Text = " ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_closing);
             this.Load += new System.EventHandler(this.CapturePicture_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pBPicture)).EndInit();

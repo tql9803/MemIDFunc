@@ -50,17 +50,17 @@ namespace MemIDFunc_namespace
         {
             bool absent = false;
 
-            while (!Present)
-            {
-                //Establish Context
-                retCode = ModWinsCard.SCardEstablishContext(ModWinsCard.SCARD_SCOPE_USER, 0, 0, ref hContext);
+            //Establish Context
+            retCode = ModWinsCard.SCardEstablishContext(ModWinsCard.SCARD_SCOPE_USER, 0, 0, ref hContext);
 
-                if (retCode == ModWinsCard.SCARD_S_SUCCESS)
+            if (retCode == ModWinsCard.SCARD_S_SUCCESS)
+            { 
+                while (!Present)
                 {
                     Success = true;
                     RdrState.RdrName = "ACS ACR122 0";
                     //Check Card Status
-                    retCode = ModWinsCard.SCardGetStatusChangeA(this.hContext, 20000, ref RdrState, 1);
+                    retCode = ModWinsCard.SCardGetStatusChangeA(this.hContext, 0, ref RdrState, 1);
 
                     if (retCode == ModWinsCard.SCARD_S_SUCCESS)
                     {
@@ -74,13 +74,13 @@ namespace MemIDFunc_namespace
                             {
                                 Success = false;
                                 MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
-                            }                                
+                            }
                             else
                             {
                                 Success = true;
                                 connActive = true;
                                 Present = true;
-                            }                       
+                            }
 
                         }
                         if ((Convert.ToUInt32(RdrState.RdrEventState) & ModWinsCard.SCARD_STATE_EMPTY) == ModWinsCard.SCARD_STATE_EMPTY
@@ -95,18 +95,25 @@ namespace MemIDFunc_namespace
                         Success = false;
                         MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
                     }
+                }
+                    
                         
-                }
-                else
-                {
-                    Success = false;
-                    MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
-                }
+            }
+            else
+            {
+                Success = false;
+                MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
+            }
 
                 OnCardPresent();
-                OnCardAbsent();
-            }
+                //OnCardAbsent();
             
+        }
+
+        private void CardConnectionMaintainace()
+        {
+            retCode = ModWinsCard.SCardEstablishContext(ModWinsCard.SCARD_SCOPE_USER, 0, 0, ref hContext);
+
         }
 
         private void CardRead()
@@ -122,7 +129,7 @@ namespace MemIDFunc_namespace
             SendBuff[0] = 0xFF;
             SendBuff[1] = 0xB0;
             SendBuff[2] = 0x00;
-            SendBuff[3] = (byte)4;
+            SendBuff[3] = (byte)0;
             SendBuff[4] = 0x10;
 
             SendLen = 5;
@@ -151,7 +158,7 @@ namespace MemIDFunc_namespace
                 for (indx = 0; indx <= RecvLen - 3; indx++)
                 {
 
-                    tmpStr = tmpStr + Convert.ToChar(RecvBuff[indx]);
+                    tmpStr = tmpStr +' '+ RecvBuff[indx].ToString();
                 }
 
 
@@ -218,7 +225,40 @@ namespace MemIDFunc_namespace
             }
         }
 
-        private void CardGetData() { }
+        private void CardGetData() 
+        {
+
+            string tmpStr;
+            int indx;
+
+            ClearBuffers();
+            SendBuff[0] = 0xFF;
+            SendBuff[1] = 0xCA;
+            SendBuff[2] = 0x01;
+            SendBuff[3] = 0x00;
+            SendBuff[4] = 0x00;
+
+            SendLen = SendBuff[4] + 5;
+            RecvLen = 0xFF;
+
+            retCode = SendAPDU();
+
+            if (retCode != ModWinsCard.SCARD_S_SUCCESS)
+            {
+
+                return;
+
+            }
+
+
+                tmpStr = "";
+                for (indx = 0; indx <= (RecvLen - 3); indx++)
+                {
+
+                    tmpStr = tmpStr + " " + string.Format("{0:X2}", RecvBuff[indx]);
+
+                }
+        }
 
         private void CardReset()
         {
@@ -239,11 +279,11 @@ namespace MemIDFunc_namespace
 
             ClearBuffers();
             // Load Authentication Keys command
-            SendBuff[0] = 0xFF;                                                                        // Class
-            SendBuff[1] = 0x82;                                                                        // INS
-            SendBuff[2] = 0x00;                                                                        // P1 : Key Structure
+            SendBuff[0] = 0xFF; // Class
+            SendBuff[1] = 0x82; // INS
+            SendBuff[2] = 0x00; // P1 : Key Structure
             SendBuff[3] = 0x00; // key # 
-            SendBuff[4] = 0x06;                                                                        // P3 : Lc
+            SendBuff[4] = 0x06; // P3 : Lc
             SendBuff[5] = 0xff; // key input val
             SendBuff[6] = 0xff; // key input val
             SendBuff[7] = 0xff; // key input val
@@ -285,7 +325,7 @@ namespace MemIDFunc_namespace
             SendBuff[4] = 0x05;                             // Lc
             SendBuff[5] = 0x01;                             // Byte 1 : Version number
             SendBuff[6] = 0x00;                             // Byte 2
-            SendBuff[7] = (byte)4;                          // Byte 3 : Block number
+            SendBuff[7] = (byte)0x00;                          // Byte 3 : Block number
 
             SendBuff[8] = 0x60;                             // Key A Authentication
 
@@ -397,7 +437,7 @@ namespace MemIDFunc_namespace
             {
                 CardResourceFailed(this, EventArgs.Empty);
                 CardReset();
-                CardChecking();
+                CardCk();
             }
         }
     }
