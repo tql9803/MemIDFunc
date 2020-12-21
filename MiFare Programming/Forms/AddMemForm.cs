@@ -12,31 +12,38 @@ using System.Configuration;
 using System.Data.SqlClient;
 using MainUI_namespace;
 
-using Word = Microsoft.Office.Interop.Word;
-using System.Reflection;
-using Microsoft.Office.Interop.Word;
 using System.IO;
-using MemIDFunc_namespace.Forms;
-using MemIDFunc_namespace.Classes;
+using MainUI_namespace.Forms;
+using MainUI_namespace.Classes;
+using MainUI_namespace.DataBase_Access;
+using MainUI_namespace.Object;
 using System.Globalization;
 
-namespace MemIDFunc_namespace
+namespace MainUI_namespace.Forms
 {
     public partial class AddMemForm : Form
     {
+        public bool Membership;
 
         public bool DBUpdated = false;
-        private DatabaseAccess DBAccess;
+        private MemberTableAccess MemberAccess;
+        private DocumentTableAccess DocumentAccess;
+        private CardTableAccess CardAccess;
 
         private bool UnderAge = false;
-        private string date;
         private string waiverpath = "Waiver.docx";
         private string memberpath = "Membership Agreement.v1.docx";
         private Image MemberImage;
         private CapturePicture CapPic;
 
-        public MemberClass NewMem;
-        public string KeyNo;
+        public bool NewMem;
+
+        public MemberClass Member;
+        public DocumentClass Document;
+        public CardClass Card;
+
+        private DateTime EffectiveDate;
+        private DateTime EndDate;
         public AddMemForm()
         {
             InitializeComponent();
@@ -46,22 +53,36 @@ namespace MemIDFunc_namespace
         {
             string[] memDetails, IDType;
 
-            DBAccess = new DatabaseAccess();
 
-            memDetails = new string[4] { "Drop-In", "1-Month", "4-Month", "12-Month" };
-            IDType = new string[3] { "Driver License", "Passport", "Other" };
+            gParentInfo.Enabled = false;
+            gbMemDetail.Enabled = false;
 
-            cbMemDetail.Items.AddRange(memDetails);
-            cbMemDetail.SelectedItem = "Drop-In";
+            MemberAccess = new MemberTableAccess();
 
+            
+            if (!NewMem)
+            {
+                memDetails = new string[1] { "Drop-In" };
+
+                cbMemDetail.Items.AddRange(memDetails);
+                cbMemDetail.SelectedItem = "Drop-In";
+            }                
+            else
+            {
+                memDetails = new string[3] { "1 Month", "4 Months", "12Months" };
+
+                cbMemDetail.Items.AddRange(memDetails);
+                gbMemDetail.Enabled = true;
+                cbMemDetail.SelectedItem = "1 Month";
+            }
+
+            IDType = new string[4] { "Driver License", "StudentID", "ServiceCard", "Other" };
             cbIDType.Items.AddRange(IDType);
             cbIDType.SelectedItem = "Driver License";
 
-            date = System.DateTime.Today.ToString(" yyyy MM dd");
+            EffectiveDate = System.DateTime.Today;
 
-            tEffDate.Text = date;
-            gParentInfo.Enabled = false;
-            gbMemDetail.Enabled = false;
+            tEffDate.Text = EffectiveDate.Date.ToString("yyyy/MM/dd");
         }
 
         private void bFinish_Click(object sender, EventArgs e)
@@ -73,8 +94,11 @@ namespace MemIDFunc_namespace
 
         private void FinalizeDoc()
         {
+            DocumentSign Signature = new DocumentSign();
+            DocumentAccess = new DocumentTableAccess();
+
             string buName, buPhone, buMdetail, buAdd, buEmail;
-            DateTime buEffDate, buDOB = new DateTime();
+            DateTime buDOB = DateTime.Today;
             string buPName = "", buPPhone = "", buPEmail = "";
             string buMemID = "", buIDType = "";
             string buEMEName, buEMEPhone, buEMERel;
@@ -120,11 +144,12 @@ namespace MemIDFunc_namespace
             else
                 buEmail = tMemEmail.Text;
 
-            buMdetail = cbMemDetail.SelectedItem.ToString();
-            buEffDate = DateTime.ParseExact(tEffDate.Text," yyyy MM dd", CultureInfo.InvariantCulture);
+            /////////////buEffDate = DateTime.ParseExact(tEffDate.Text," yyyy MM dd", CultureInfo.InvariantCulture);
 
             SaveAsDocPath = SaveAsDocPath + buName + @"\";
             DirectoryInfo DirInfo = System.IO.Directory.CreateDirectory(SaveAsDocPath);
+
+            DateRangeCaculation();
 
             #endregion Member Info Verification
 
@@ -141,11 +166,11 @@ namespace MemIDFunc_namespace
                 }
                 else
                     try {
-                        buDOB = DateTime.ParseExact(tDOB.Text, "yyyy MM dd", CultureInfo.InvariantCulture); 
+                        buDOB = DateTime.ParseExact(tDOB.Text, "yyyy/MM/dd", CultureInfo.InvariantCulture); 
                     }
                     catch(Exception e)
                     {
-                        MessageBox.Show("Date Format: yyyy MM dd");
+                        MessageBox.Show("Date Format: yyyy/MM/dd");
                     }
 
 
@@ -160,13 +185,13 @@ namespace MemIDFunc_namespace
 
                 buIDType = cbIDType.SelectedItem.ToString();
 
-                SavePath = SaveAsDocPath + "Membership " + buName + date + ".docx";
+                SavePath = SaveAsDocPath + "Membership " + buName + EffectiveDate.Date.ToString("_yy_MM_dd") + ".docx";
 
 
             }
             else
             {
-                SavePath = SaveAsDocPath + "Waiver " + buName + date + ".docx";
+                SavePath = SaveAsDocPath + "Waiver " + buName + EffectiveDate.Date.ToString("_yy_MM_dd") + ".docx";
 
 
             }
@@ -250,51 +275,122 @@ namespace MemIDFunc_namespace
             #region Create Path
             
             string EventPath;
-            EventPath = SaveAsDocPath + "EventLog " + buName + date + ".csv";
+            EventPath = SaveAsDocPath + "EventLog " + buName + EffectiveDate.Date.ToString("_yy_MM_dd") + ".csv";
 
             #endregion
 
-            #region Set NewMem
-            NewMem = new MemberClass();
-
-            NewMem.CreateNewMember(buName, buDOB, buIDType, buMemID, buPhone, buEmail, buMdetail,
-                KeyNo, ConvertedPics, buAdd, SavePath, EventPath, buEffDate);
-            #endregion
             //////////////////////////////////////////////////
 
+            Signature.UnderAge = UnderAge;
 
             if (cbMemDetail.SelectedItem.ToString() == "Drop-In")
             {
-                SignWaiverMethod(SourceDocPath + waiverpath, SavePath, buName,
+                
+                Member = new MemberClass();
+
+                ////Create Document here
+
+                
+                Member.CreateDropIn(buName, buPhone, buEmail, buAdd, EffectiveDate, ConvertedPics);
+                var MemAccRet = MemberAccess.AddMember(Member);
+
+                switch (MemAccRet)
+                {
+                    case EventLogManipulation.EventTranslationFirst.Member_DropIn:
+                        CreateEventLog(EventPath);
+
+                        Signature.SignWaiverMethod(SourceDocPath + waiverpath, SavePath, buName,
                     buAdd, buPhone, buEmail, buPName, buPPhone, buPEmail, buEMEName,
-                    buEMEPhone, buEMERel, buEffDate.Date.ToString("yyyy/MM/dd"));
+                    buEMEPhone, buEMERel, EffectiveDate.Date.ToString("yyyy/MM/dd"));
+
+                        Document = new DocumentClass();
+                        Document.CreateDocument(EventPath, SavePath, "",null);
+
+                        DocumentAccess.AddDocument(Document);
+                        //update event logw
+                        DocumentAccess.UpdatePersonalLog(Document,MemAccRet);
+                        break;
+                    case EventLogManipulation.EventTranslationFirst.Member_New:
+                        break;
+                    default:
+                        break;
+                }
+
+                
+
             }
             else
             {
-                SignMembershipMethod(SourceDocPath + memberpath, SavePath, buName,
+                Member = new MemberClass();
+
+
+                ////Create Document here
+                
+                
+                Member.CreateNewMember(buName, buDOB, buIDType, buMemID, buPhone, buEmail, buAdd, EffectiveDate,
+                    EndDate, true, ConvertedPics);
+                var MemAccRet = MemberAccess.AddMember(Member);
+                
+                
+
+                switch (MemAccRet)
+                {
+                    case EventLogManipulation.EventTranslationFirst.Member_New:
+                        CreateEventLog(EventPath);
+
+                        Document = new DocumentClass();
+                        Document.CreateDocument(EventPath, "", SavePath, DocumentAccess.FindLastDocID() + 1);
+                        
+                        DocumentAccess.AddDocument(Document);
+                        //update event log
+                        DocumentAccess.UpdatePersonalLog(Document, MemAccRet);
+                        Signature.SignMembershipMethod(SourceDocPath + memberpath, SavePath, buName,
                     buAdd, buPhone, buEmail, buDOB.Date.ToString("yyyy/MM/dd"), buMemID,
                     buPName, buPPhone, buPEmail, buEMEName,
-                    buEMEPhone, buEMERel, buEffDate.Date.ToString("yyyy/MM/dd"));
+                    buEMEPhone, buEMERel, EffectiveDate.Date.ToString("yyyy/MM/dd"));                        
+                        
+                        
+                        break;
+                    case EventLogManipulation.EventTranslationFirst.Member_Promote:
+
+                        Document = new DocumentClass();
+                        Document = DocumentAccess.FindDocument("Id", Member.ID);
+                        Document.MembershipDoc = SavePath;
+                        Document.DocID = DocumentAccess.FindLastDocID() + 1;
+
+                        DocumentAccess.UpdateExistingDoc(Document);
+                        //update event log
+                        DocumentAccess.UpdatePersonalLog(Document, MemAccRet);
+
+                        Signature.SignMembershipMethod(SourceDocPath + memberpath, SavePath, buName,
+                    buAdd, buPhone, buEmail, buDOB.Date.ToString("yyyy/MM/dd"), buMemID,
+                    buPName, buPPhone, buPEmail, buEMEName,
+                    buEMEPhone, buEMERel, EffectiveDate.Date.ToString("yyyy/MM/dd"));                        
+
+                        
+                        break;
+                    case EventLogManipulation.EventTranslationFirst.Process_Cancel:
+                        break;
+                    default:
+                        break;
+                }               
+                                
             }
 
             
-            CreateEventLog(EventPath);
 
 
-            OpentoSignMethod(SavePath);
+            Signature.OpentoSignMethod(SavePath);
 
-            DBAccess.UpdateDB(NewMem);
             DBUpdated = true;
 
         }
 
         private void CreateEventLog(string EventPath)
         {
-            using(System.IO.StreamWriter streamWriter = new StreamWriter(EventPath, true))
-            {
-                streamWriter.Write("Created" + System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm") + "\r\n");
-                streamWriter.Write("Check-In , Check-Out \r\n");
-            }
+            //using(System.IO.StreamWriter streamWriter = new StreamWriter(EventPath, true))
+            
+               
 
         }
 
@@ -304,184 +400,26 @@ namespace MemIDFunc_namespace
             return (byte[])IConverter.ConvertTo(Im, typeof(byte[]));
         }
 
-        private void ReplacementMethod(Word.Application WordApp, object FindText, object ReplaceText)
+        
+
+        private void DateRangeCaculation()
         {
-            object matchcase = true;
-            object matchWholeword = true;
-            object matchWildcard = false;
-            object matchSoundlike = false;
-            object matchAllform = false;
-            object forward = true;
-            object format = false;
-            object matchKashida = false;
-            object matchDiacritics = false;
-            object matchAlefHamza = false;
-            object matchControl = false;
-            object read_only = false;
-            object visible = true;
-            object replace = 2;
-            object warp = 1;
-
-
-
-            WordApp.Selection.Find.Execute(ref FindText, ref matchcase, ref matchWholeword, ref matchWildcard,
-                ref matchSoundlike, ref matchAllform, ref forward, ref warp, ref format, ref ReplaceText,
-                ref replace, ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
-        }
-
-        private void SignWaiverMethod(object TempFile, object SaveFile, object MemName, object MemAdd,
-            object MemPhone, object MemEmail, object ParentName, object ParentPhone, object ParentEmail,
-            object EMEName, object EMEPhone, object EMERel, object EffDate)
-        {
-            Word.Application wordApp = new Word.Application();
-            object missing = Missing.Value;
-            Word.Document myDocument = null;
-
-            object ReadOnly = false;
-            object isVisible = false;
-            wordApp.Visible = false;
-
-            object saveChange = Word.WdSaveOptions.wdDoNotSaveChanges;
-
-            try
+            EffectiveDate = DateTime.ParseExact(tEffDate.Text, "yyyy/MM/dd", CultureInfo.InvariantCulture);
+            switch (cbMemDetail.SelectedItem.ToString()) 
             {
-                myDocument = wordApp.Documents.Open(ref TempFile, ref missing, ref ReadOnly, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref isVisible, ref missing, ref missing, ref missing, ref missing);
-
-                myDocument.Activate();
-
-                ReplacementMethod(wordApp, "[MEMBER NAME]", MemName);
-                ReplacementMethod(wordApp, "[MEMBER ADDRESS]", MemAdd);
-                ReplacementMethod(wordApp, "[MEMBER PHONE]", MemPhone);
-                ReplacementMethod(wordApp, "[MEMBER EMAIL]", MemEmail);
-
-                ReplacementMethod(wordApp, "[EME NAME]", EMEName);
-                ReplacementMethod(wordApp, "[EME PHONE]", EMEPhone);
-                ReplacementMethod(wordApp, "[EME RELATIONSHIP]", EMERel);
-
-                if (UnderAge)
-                {
-                    ReplacementMethod(wordApp, "[PARENT NAME]", ParentName);
-                    ReplacementMethod(wordApp, "[PARENT PHONE]", ParentPhone);
-                    ReplacementMethod(wordApp, "[PARENT EMAIL]", ParentEmail);
-                }
-                else
-                {
-                    ReplacementMethod(wordApp, "[PARENT NAME]", null);
-                    ReplacementMethod(wordApp, "[PARENT PHONE]", null);
-                    ReplacementMethod(wordApp, "[PARENT EMAIL]", null);
-                }
-
-                ReplacementMethod(wordApp, "[DATE]", EffDate);
-
-                myDocument.SaveAs2(ref SaveFile, ref missing, ref missing, ref missing, ref missing, ref missing,
-                   ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                   ref missing, ref missing, ref missing, ref missing);
-
-                myDocument.Close(saveChange, missing, missing);
-                wordApp.Quit();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                myDocument.Close(saveChange, missing, missing);
-                wordApp.Quit();
-            }
-            
-        }
-
-        private void SignMembershipMethod(object TempFile, object SaveFile, object MemName, object MemAdd,
-            object MemPhone, object MemEmail, object MemDOB, object MemID, object ParentName, object ParentPhone, object ParentEmail,
-            object EMEName, object EMEPhone, object EMERel, object EffDate)
-        {
-            Word.Application wordApp = new Word.Application();
-            object missing = Missing.Value;
-            Word.Document myDocument = null;
-
-            object ReadOnly = false;
-            object isVisible = false;
-            wordApp.Visible = false;
-
-            object saveChange = Word.WdSaveOptions.wdDoNotSaveChanges;
-            try 
-            {
-                myDocument = wordApp.Documents.Open(ref TempFile, ref missing, ref ReadOnly, ref missing,
-                ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                ref isVisible, ref missing, ref missing, ref missing, ref missing);
-
-                myDocument.Activate();
-
-                ReplacementMethod(wordApp, "[MEMBER NAME]", MemName);
-                ReplacementMethod(wordApp, "[MEMBER ADDRESS]", MemAdd);
-                ReplacementMethod(wordApp, "[MEMBER PHONE]", MemPhone);
-                ReplacementMethod(wordApp, "[MEMBER EMAIL]", MemEmail);
-
-                ReplacementMethod(wordApp, "[MEMBER DOB]", MemDOB);
-                ReplacementMethod(wordApp, "[MEMBER IDENTIFICATION]", MemID);
-
-                ReplacementMethod(wordApp, "[EME NAME]", EMEName);
-                ReplacementMethod(wordApp, "[EME PHONE]", EMEPhone);
-                ReplacementMethod(wordApp, "[EME RELATIONSHIP]", EMERel);
-
-                if (UnderAge)
-                {
-                    ReplacementMethod(wordApp, "[PARENT NAME]", ParentName);
-                    ReplacementMethod(wordApp, "[PARENT PHONE]", ParentPhone);
-                    ReplacementMethod(wordApp, "[PARENT ADDRESS]", MemAdd);
-                    ReplacementMethod(wordApp, "[PARENT EMAIL]", ParentEmail);
-                }
-                else
-                {
-                    ReplacementMethod(wordApp, "[PARENT NAME]", null);
-                    ReplacementMethod(wordApp, "[PARENT PHONE]", null);
-                    ReplacementMethod(wordApp, "[PARENT ADDRESS]", null);
-                    ReplacementMethod(wordApp, "[PARENT EMAIL]", null);
-                }
-
-                ReplacementMethod(wordApp, "[DATE]", EffDate);
-
-                myDocument.SaveAs2(ref SaveFile, ref missing, ref missing, ref missing, ref missing, ref missing,
-                   ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                   ref missing, ref missing, ref missing, ref missing);
-
-                myDocument.Close(saveChange, missing, missing);
-                wordApp.Quit();
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                myDocument.Close(saveChange, missing, missing);
-                wordApp.Quit();
-            }
-}
-
-        private void OpentoSignMethod(object FilePath)
-        {
-            Word.Application wordApp = new Word.Application();
-            Word.Document myDocument = null;
-            
-            object missing = Missing.Value;
-            object ReadOnly = false;
-            object isVisible = true;
-            wordApp.Visible = true;
-
-            object saveChange = Word.WdSaveOptions.wdDoNotSaveChanges;
-
-            try
-            {
-                myDocument = wordApp.Documents.Open(ref FilePath, ref missing, ref ReadOnly, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref isVisible, ref missing, ref missing, ref missing, ref missing);
-
-                myDocument.Activate();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                myDocument.Close(saveChange, missing, missing);
-                wordApp.Quit();
+                case "1 Month":
+                    EndDate = EffectiveDate.AddMonths(1);
+                    break;
+                case "4 Months":
+                    EndDate = EffectiveDate.AddMonths(4);
+                    break;
+                case "12 Months":
+                    EndDate = EffectiveDate.AddMonths(12);
+                    break;
+                default:
+                    EndDate = EffectiveDate;
+                    break;
+                    
             }
         }
         private void AtFormClosing(object sender, FormClosingEventArgs e)

@@ -1,4 +1,4 @@
-﻿namespace MemIDFunc_namespace
+﻿namespace MainUI_namespace.Forms
 {
     partial class AddMemForm
     {
@@ -58,13 +58,15 @@
             this.lERel = new System.Windows.Forms.Label();
             this.gBMain = new System.Windows.Forms.GroupBox();
             this.lEffDate = new System.Windows.Forms.Label();
-            this.cbIDType = new System.Windows.Forms.ComboBox();
             this.tEffDate = new System.Windows.Forms.TextBox();
+            this.cbIDType = new System.Windows.Forms.ComboBox();
             this.lDOB = new System.Windows.Forms.Label();
             this.lID = new System.Windows.Forms.Label();
             this.tDOB = new System.Windows.Forms.TextBox();
             this.tMemID = new System.Windows.Forms.TextBox();
             this.gbMemDetail = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.gParentInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gBMain.SuspendLayout();
@@ -344,6 +346,7 @@
             // 
             // gBMain
             // 
+            this.gBMain.Controls.Add(this.label1);
             this.gBMain.Controls.Add(this.ckBUnderAge);
             this.gBMain.Controls.Add(this.lEffDate);
             this.gBMain.Controls.Add(this.lAddress);
@@ -377,6 +380,14 @@
             this.lEffDate.TabIndex = 0;
             this.lEffDate.Text = "Effective Date";
             // 
+            // tEffDate
+            // 
+            this.tEffDate.Location = new System.Drawing.Point(103, 213);
+            this.tEffDate.Margin = new System.Windows.Forms.Padding(5);
+            this.tEffDate.Name = "tEffDate";
+            this.tEffDate.Size = new System.Drawing.Size(135, 27);
+            this.tEffDate.TabIndex = 5;
+            // 
             // cbIDType
             // 
             this.cbIDType.FormattingEnabled = true;
@@ -385,14 +396,6 @@
             this.cbIDType.Name = "cbIDType";
             this.cbIDType.Size = new System.Drawing.Size(135, 28);
             this.cbIDType.TabIndex = 2;
-            // 
-            // tEffDate
-            // 
-            this.tEffDate.Location = new System.Drawing.Point(103, 213);
-            this.tEffDate.Margin = new System.Windows.Forms.Padding(5);
-            this.tEffDate.Name = "tEffDate";
-            this.tEffDate.Size = new System.Drawing.Size(135, 27);
-            this.tEffDate.TabIndex = 5;
             // 
             // lDOB
             // 
@@ -432,6 +435,7 @@
             // 
             // gbMemDetail
             // 
+            this.gbMemDetail.Controls.Add(this.label2);
             this.gbMemDetail.Controls.Add(this.lID);
             this.gbMemDetail.Controls.Add(this.tMemID);
             this.gbMemDetail.Controls.Add(this.tDOB);
@@ -444,11 +448,31 @@
             this.gbMemDetail.TabStop = false;
             this.gbMemDetail.Text = "Membership Details";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(8, 216);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "yyyy/MM/dd";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(285, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "yyyy/MM/dd";
+            // 
             // AddMemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::MemIDFunc_namespace.Properties.Resources.Logo1;
+            this.BackgroundImage = global::MainUI_namespace.Properties.Resources.Logo1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1047, 548);
             this.Controls.Add(this.gbMemDetail);
@@ -513,5 +537,7 @@
         private System.Windows.Forms.TextBox tDOB;
         private System.Windows.Forms.TextBox tMemID;
         private System.Windows.Forms.GroupBox gbMemDetail;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

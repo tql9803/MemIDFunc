@@ -7,7 +7,7 @@
     <ProjectGuid>{B30AF28C-0911-4AE8-B237-B421725C12E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MemIDFunc_namespace</RootNamespace>
+    <RootNamespace>MainUI_namespace</RootNamespace>
     <AssemblyName>MemIDFunc</AssemblyName>
     <ApplicationIcon>GymWebIco.ico</ApplicationIcon>
     <FileUpgradeFlags>
@@ -105,8 +105,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CardClass.cs" />
-    <Compile Include="Classes\MemberClass.cs" />
+    <Compile Include="Classes\DocumentSign.cs" />
+    <Compile Include="DataBase Access\CardTableAccess.cs" />
+    <Compile Include="DataBase Access\DocumentTableAccess.cs" />
+    <Compile Include="DataBase Access\InventoryTableAccess.cs" />
+    <Compile Include="Forms\AddCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddCard.Designer.cs">
+      <DependentUpon>AddCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CardMemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CardMemForm.Designer.cs">
+      <DependentUpon>CardMemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CheckInOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CheckInOutForm.Designer.cs">
+      <DependentUpon>CheckInOutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Object\CardClass.cs" />
+    <Compile Include="Object\DocumentClass.cs" />
+    <Compile Include="Classes\EventLogManipulation.cs" />
+    <Compile Include="Object\Item.cs" />
+    <Compile Include="Object\MemberClass.cs" />
     <Compile Include="Forms\AddMemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,7 +139,7 @@
       <DependentUpon>AddMemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CardThreading.cs" />
-    <Compile Include="Classes\DatabaseAccess.cs" />
+    <Compile Include="DataBase Access\MemberTableAccess.cs" />
     <Compile Include="Forms\CapturePicture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,18 +159,28 @@
       <DependentUpon>MemInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\ModWinsCard.cs" />
+    <Compile Include="MemberInfo_dbDataSet.cs">
+      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MemberInfo_dbDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Object\OrderClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AddCard.resx">
+      <DependentUpon>AddCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddMemForm.resx">
       <DependentUpon>AddMemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CapturePicture.resx">
       <DependentUpon>CapturePicture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CardMemForm.resx">
+      <DependentUpon>CardMemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MemIDFunc.resx">
       <DependentUpon>MemIDFunc.cs</DependentUpon>

@@ -1,4 +1,4 @@
-﻿namespace MemIDFunc_namespace
+﻿namespace MainUI_namespace.Forms
 {
     partial class MemInfoForm
     {

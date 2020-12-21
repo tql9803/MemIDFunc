@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace MemIDFunc_namespace {
+namespace MainUI_namespace {
     
     
     /// <summary>
@@ -833,7 +833,7 @@ namespace MemIDFunc_namespace {
         }
     }
 }
-namespace MemIDFunc_namespace.MemberInfo_dbDataSetTableAdapters {
+namespace MainUI_namespace.MemberInfo_dbDataSetTableAdapters {
     
     
     /// <summary>
@@ -1010,7 +1010,7 @@ SELECT Id, Name, PhoneNum, Email, MemDetail, KeyNum, Picture, Address, Membershi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::MemIDFunc_namespace.Properties.Settings.Default.MemberInfo_dbConnectionString;
+            this._connection.ConnectionString = global::MainUI_namespace.Properties.Settings.Default.MemberInfo_dbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
+using MainUI_namespace.Forms;
+
 namespace MainUI_namespace
 {
     static class Program

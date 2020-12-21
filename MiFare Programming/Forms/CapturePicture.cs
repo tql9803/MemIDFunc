@@ -14,7 +14,7 @@ using AForge.Imaging.Filters;
 using AForge;
 using Microsoft.Office.Interop.Word;
 
-namespace MemIDFunc_namespace.Forms
+namespace MainUI_namespace.Forms
 {
     public partial class CapturePicture : Form
     {

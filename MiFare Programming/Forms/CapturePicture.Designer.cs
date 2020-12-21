@@ -1,4 +1,4 @@
-﻿namespace MemIDFunc_namespace.Forms
+﻿namespace MainUI_namespace.Forms
 {
     partial class CapturePicture
     {
@@ -51,7 +51,7 @@
             // pBPicture
             // 
             this.pBPicture.Image = null;
-            this.pBPicture.InitialImage = global::MemIDFunc_namespace.Properties.Resources.Logo11;
+            this.pBPicture.InitialImage = global::MainUI_namespace.Properties.Resources.Logo11;
             this.pBPicture.Location = new System.Drawing.Point(402, 172);
             this.pBPicture.Name = "pBPicture";
             this.pBPicture.Size = new System.Drawing.Size(357, 343);
@@ -116,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::MemIDFunc_namespace.Properties.Resources.Logo1;
+            this.BackgroundImage = global::MainUI_namespace.Properties.Resources.Logo1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(789, 542);
             this.Controls.Add(this.bCapture);

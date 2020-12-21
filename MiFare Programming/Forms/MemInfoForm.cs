@@ -14,7 +14,7 @@ using System.Drawing.Text;
 using System.IO;
 using Microsoft.Office.Interop.Word;
 
-namespace MemIDFunc_namespace
+namespace MainUI_namespace.Forms
 {
     public partial class MemInfoForm : Form
     {

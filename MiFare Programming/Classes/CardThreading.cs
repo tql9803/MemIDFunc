@@ -11,7 +11,7 @@ using MainUI_namespace;
 using System.Threading;
 using System.Xml.Serialization;
 
-namespace MemIDFunc_namespace
+namespace MainUI_namespace.Classes
 {
     public class CardThreading
     {
@@ -23,7 +23,7 @@ namespace MemIDFunc_namespace
         private ModWinsCard.SCARD_READERSTATE RdrState;
         private ModWinsCard.SCARD_IO_REQUEST pioSendRequest;
 
-        public string KeyNo;
+        public byte[] KeyNo;
 
         public bool Present = false;
         public bool Success = false;
@@ -105,14 +105,19 @@ namespace MemIDFunc_namespace
                 MessageBox.Show(ModWinsCard.GetScardErrMsg(retCode));
             }
 
-                OnCardPresent();
-                //OnCardAbsent();
-            
+            OnCardPresent();
+            OnCardAbsent();
+                        
         }
 
         private void CardConnectionMaintainace()
         {
             retCode = ModWinsCard.SCardEstablishContext(ModWinsCard.SCARD_SCOPE_USER, 0, 0, ref hContext);
+
+        }
+
+        private void CardInitialize()
+        {
 
         }
 
@@ -154,15 +159,9 @@ namespace MemIDFunc_namespace
             }
             if (tmpStr.Trim() == "90 00")
             {
-                tmpStr = "";
-                for (indx = 0; indx <= RecvLen - 3; indx++)
-                {
-
-                    tmpStr = tmpStr +' '+ RecvBuff[indx].ToString();
-                }
 
 
-                KeyNo = tmpStr; 
+                KeyNo = RecvBuff; 
 
             }
             else
@@ -177,9 +176,9 @@ namespace MemIDFunc_namespace
 
             int indx, blkNo = 4;
             int SendDataLn;
-            string tmpStr;
+            string tmpStr="";
 
-            tmpStr = KeyNo;
+            //tmpStr = KeyNo;
             //byte[] Keybuff = Encoding.ASCII.GetBytes(tmpStr);
 
             //for (int i = 0; i < Keybuff.Length; i++)
@@ -260,7 +259,7 @@ namespace MemIDFunc_namespace
                 }
         }
 
-        private void CardReset()
+        public void CardReset()
         {
             if (connActive)
             {
