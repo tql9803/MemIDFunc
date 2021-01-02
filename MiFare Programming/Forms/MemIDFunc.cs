@@ -42,6 +42,7 @@ namespace MainUI_namespace.Forms
         AddMemForm addMem;
         MemInfoForm infoform;
         CardMemForm CardMem;
+        CheckInOutForm CForm;
 
         MemberTableAccess MemberAccess;
         public string KeyToWrite = "";
@@ -102,7 +103,10 @@ namespace MainUI_namespace.Forms
 
         private void bSCard_Click(object sender, EventArgs e)
         {
-            InitMenu();
+            bSCard.Enabled = false;
+            CForm = new CheckInOutForm();
+            CForm.Show();
+            CForm.Focus();
         }
 
         private void memberInformationBindingNavigatorSaveItem_Click(object sender, EventArgs e)

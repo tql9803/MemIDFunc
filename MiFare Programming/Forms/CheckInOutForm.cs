@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.IO;
+
 using MainUI_namespace.DataBase_Access;
 using MainUI_namespace.Classes;
+using MainUI_namespace.Object;
 
 namespace MainUI_namespace.Forms
 {
     public partial class CheckInOutForm : Form
     {
+        string LogPath = @"C:\Users\Public\Documents\";
+        string DailyLog = "CCSheet ";
+        DateTime TodayDate;
 
         CardThreading CardThread;
 
@@ -22,11 +28,29 @@ namespace MainUI_namespace.Forms
         CardTableAccess CardAccess;
         DocumentTableAccess DocAccess;
 
+        CardClass Card;
+        MemberClass Member;
+        DocumentClass Doc;
+
+        public string LogFile;
         public CheckInOutForm()
         {
             InitializeComponent();
         }
 
+        private void FindTodayLog(bool InOut)
+        {
+            /////
+            string ddLog = LogPath + DailyLog + DateTime.Today.Date.ToString("yyyy MM dd") + ".csv";
+
+            using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(ddLog, true))
+            {
+                if(InOut)
+                    streamWriter.WriteLine(Member.Name + "," + DateTime.Now.ToString("yy/MM/dd hh:mm"));
+                else
+                    streamWriter.Write("," + DateTime.Now.ToString("yy/MM/dd hh:mm"));
+            }
+        }
         private void InitMenu()
         {
             CardThread = new CardThreading();
@@ -36,6 +60,84 @@ namespace MainUI_namespace.Forms
             Task cardState = new Task(CardThread.CardChecking.Invoke);
             cardState.Start();
 
+            CardThread.CardPresent += this.OnCardPresent;
+
+            Member = new MemberClass();
+        }
+
+
+        private void OnCardPresent(object sender, EventArgs e)
+        {
+            MemberAccess = new MemberTableAccess();
+            DocAccess = new DocumentTableAccess();
+
+            List<CardClass> CardList;
+
+            byte[] bufferKey;
+
+            string LastLine;
+            string[] LineComp;
+
+            bufferKey = CardThread.KeyNo;
+            CardList = CardAccess.FindCard("CardNo", bufferKey);
+
+            if (CardList.Count != 0)
+            {
+                if (CardList[0].IsActive) 
+                {
+                    Member = MemberAccess.FindMember("Id", CardList[0].CustomerID);
+
+                    Doc = DocAccess.FindDocument("SystemID", Member.ID);
+                    if (Doc != null)
+                    {
+                        LastLine = File.ReadLines(Doc.EventLog).Last();
+
+                        LineComp = LastLine.Split(',');
+
+                        switch (LineComp[0])
+                        {
+                            case "CheckIn":
+                                FindTodayLog(false);
+                                DocAccess.UpdatePersonalLog(Doc, EventLogManipulation.EventTranslationFirst.CheckOut);
+                                break;
+                            case "CheckOut":
+                                FindTodayLog(true);
+                                DocAccess.UpdatePersonalLog(Doc, EventLogManipulation.EventTranslationFirst.CheckIn);
+
+                                break;
+                            default:
+                                FindTodayLog(true);
+                                DocAccess.UpdatePersonalLog(Doc, EventLogManipulation.EventTranslationFirst.CheckIn);
+
+                                break;
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("The card is not Active");
+                }
+            }
+            else
+            {
+                MessageBox.Show("The card is not in the system");
+            }
+        }
+
+        //private void UpdateDailyLog(EventLogManipulation.EventTranslationFirst Msg)
+        //{
+        //    using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(LogFile, true))
+        //    {
+        //        streamWriter.WriteLine(Msg.ToString() + "," + DateTime.Now.ToString("yy/MM/dd hh:mm"));
+        //    }
+        //}
+
+
+        private void bScan_Click(object sender, EventArgs e)
+        {
+            InitMenu();
+            bScan.Enabled = false;
         }
     }
 }
