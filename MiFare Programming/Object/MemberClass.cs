@@ -50,7 +50,7 @@ namespace MainUI_namespace.Object
             this.ID = (int)ValueArray[0];
             this.Name = (string)ValueArray[1];
 
-            this.DOB = (ValueArray[2] == DBNull.Value) ? (new DateTime()) : (DateTime)ValueArray[2];
+            this.DOB = (ValueArray[2] == DBNull.Value) ? (new DateTime(1800, 1, 1)) : (DateTime)ValueArray[2];
             this.IDType = (ValueArray[3] == DBNull.Value) ? (null) : (string)ValueArray[3];
             this.MemberID = (ValueArray[4] == DBNull.Value) ? (null) : (string)ValueArray[4];
 
@@ -58,8 +58,8 @@ namespace MainUI_namespace.Object
             this.Email = (ValueArray[6] == DBNull.Value) ? (null) : (string)ValueArray[6];
             this.Address = (ValueArray[7] == DBNull.Value) ? (null) : (string)ValueArray[7];
 
-            this.EffDate = (ValueArray[8] == DBNull.Value) ? (new DateTime()) : (DateTime)ValueArray[8];
-            this.EndDate = (ValueArray[9] == DBNull.Value) ? (new DateTime()) : (DateTime)ValueArray[9];
+            this.EffDate = (ValueArray[8] == DBNull.Value) ? (new DateTime(1800, 1, 1)) : (DateTime)ValueArray[8];
+            this.EndDate = (ValueArray[9] == DBNull.Value) ? (new DateTime(1800, 1, 1)) : (DateTime)ValueArray[9];
             this.Validity = (ValueArray[10] == DBNull.Value) ? (true) : (bool)ValueArray[10];
             this.IsMember = (ValueArray[11] == DBNull.Value) ? (false) : (bool)ValueArray[11];
 

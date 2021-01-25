@@ -198,8 +198,9 @@ namespace MainUI_namespace.DataBase_Access
         /// <param Message to update into the persaonal log="Message"></param>
         public void UpdatePersonalLog(DocumentClass Document, EventLogManipulation.EventTranslationFirst Message)
         {
-            string PersonalLog =(string.IsNullOrEmpty(Document.EventLog)) ? null : Document.EventLog;
+            string PersonalLog = Document.EventLog;
 
+            if(!string.IsNullOrEmpty(PersonalLog))
             using (StreamWriter fstream = new StreamWriter(PersonalLog, true))
             {
                 fstream.WriteLine(Message.ToString() + "," + DateTime.Now.ToString("yy/MM/dd hh:mm"));
