@@ -91,7 +91,9 @@ namespace MainUI_namespace.DataBase_Access
         /// <param Column Value="Value"></param>
         public MemberClass FindMember(object Para, object Value)
         {
-            string FindQuery = FindMemQuery + $"[{Para}] = '{Value}'";
+            string FindQuery = FindMemQuery + $"[{Para}] like @ParamVal " +
+                $"or [{Para}] like @ParamVal + CHAR(10) +'%' " +
+                $"or [{Para}] like @ParamVal + CHAR(13) +'%' ";
 
             MemberClass Member = new MemberClass();
 
@@ -102,6 +104,8 @@ namespace MainUI_namespace.DataBase_Access
 
                 try
                 {
+                    command.Parameters.AddWithValue("@ParamVal", Value);
+
                     SqlDataReader rd;
                     rd = command.ExecuteReader();
 
@@ -200,7 +204,7 @@ namespace MainUI_namespace.DataBase_Access
 
                 if (buffMember != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Member exist in the system. Do you want to Add(Ok) or (Cancel)?", "Member's Name Existed"
+                    DialogResult dialogResult = MessageBox.Show("Person exist in the system. Do you want to Add DropIn(Ok) or (Cancel)?", "Member's Name Existed"
                         , MessageBoxButtons.OKCancel);
                     if (dialogResult == DialogResult.OK)
                     {

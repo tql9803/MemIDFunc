@@ -39,10 +39,10 @@ namespace MainUI_namespace.Object
         public void ReadDocument(object[] ValueArray)
         {
             this.SystemID = (int)ValueArray[0];
-            this.EventLog = (string)ValueArray[1];
+            this.EventLog = (ValueArray[1] == DBNull.Value) ? (null) : (string)ValueArray[1];
 
-            this.Waiver = (string)ValueArray[2];
-            this.MembershipDoc = (string)ValueArray[3];
+            this.Waiver = (ValueArray[2] == DBNull.Value) ? (null) : (string)ValueArray[2];
+            this.MembershipDoc = (ValueArray[3] == DBNull.Value) ? (null) : (string)ValueArray[3];
 
             this.DocID = (ValueArray[4] == DBNull.Value) ? 0 : (int)ValueArray[4];
         }

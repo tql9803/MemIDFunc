@@ -275,7 +275,7 @@ namespace MainUI_namespace.Forms
             #region Create Path
             
             string EventPath;
-            EventPath = SaveAsDocPath + "EventLog " + buName + EffectiveDate.Date.ToString("_yy_MM_dd") + ".csv";
+            EventPath = SaveAsDocPath + "EventLog " + buName + ".csv";
 
             #endregion
 
@@ -305,7 +305,7 @@ namespace MainUI_namespace.Forms
 
                         Document = new DocumentClass();
                         Document.CreateDocument(EventPath, SavePath, "",null);
-
+                        //Document.SystemID = 
                         DocumentAccess.AddDocument(Document);
                         //update event logw
                         DocumentAccess.UpdatePersonalLog(Document,MemAccRet);

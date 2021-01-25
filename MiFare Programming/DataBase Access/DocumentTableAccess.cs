@@ -124,7 +124,7 @@ namespace MainUI_namespace.DataBase_Access
             {
                 ServerConnect.Open();
 
-                //command.Parameters.AddWithValue("@SystemID", NewDoc.SystemID);
+                command.Parameters.AddWithValue("@SystemID", NewDoc.SystemID);
                 command.Parameters.AddWithValue("@EventLog", NewDoc.EventLog);
                 command.Parameters.AddWithValue("@Waiver", NewDoc.Waiver);
                 command.Parameters.AddWithValue("@Membership", NewDoc.MembershipDoc);
@@ -198,7 +198,7 @@ namespace MainUI_namespace.DataBase_Access
         /// <param Message to update into the persaonal log="Message"></param>
         public void UpdatePersonalLog(DocumentClass Document, EventLogManipulation.EventTranslationFirst Message)
         {
-            string PersonalLog = Document.EventLog;
+            string PersonalLog =(string.IsNullOrEmpty(Document.EventLog)) ? null : Document.EventLog;
 
             using (StreamWriter fstream = new StreamWriter(PersonalLog, true))
             {

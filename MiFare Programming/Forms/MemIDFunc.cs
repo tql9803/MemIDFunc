@@ -43,6 +43,7 @@ namespace MainUI_namespace.Forms
         MemInfoForm infoform;
         CardMemForm CardMem;
         CheckInOutForm CForm;
+        EditMemberForm EditMem;
 
         MemberTableAccess MemberAccess;
         public string KeyToWrite = "";
@@ -181,6 +182,11 @@ namespace MainUI_namespace.Forms
 
             this.bQuit.Location = new Point(this.Size.Width / 2 - 75 - 75, this.Size.Height * 9 / 10);
             this.bReset.Location = new Point(this.Size.Width / 2 + 75 - 75, this.Size.Height * 9 / 10);
+        }
+
+        private void bAddPic_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void ExNewMemTriggered(object sender, EventArgs e)

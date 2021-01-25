@@ -12,16 +12,19 @@ using System.IO;
 using MainUI_namespace.Object;
 using MainUI_namespace.DataBase_Access;
 using MainUI_namespace.Classes;
+using MainUI_namespace.Forms;
 
 namespace MainUI_namespace.Forms
 {
-    public partial class CardMemForm : Form
+    public partial class EditMemberForm : Form
     {
         public CardClass Card;
         public MemberClass Member;
 
+        private CapturePicture CapForm;
+
         private string Param;
-        public CardMemForm()
+        public EditMemberForm()
         {
             InitializeComponent();
         }
@@ -48,18 +51,29 @@ namespace MainUI_namespace.Forms
 
             Member = MemberAccess.FindMember(Param, tParamVal.Text);
 
-            if(Member!= null)
-            {
-                ListViewItem MemberItem = new ListViewItem(Member.ID.ToString());
-                MemberItem.SubItems.Add(Member.Name);
-                MemberItem.SubItems.Add(Member.DOB.Date.ToString("yyyy/MM/dd"));
-                MemberItem.SubItems.Add(Member.MemberID);
-                MemberItem.SubItems.Add(Member.PhoneNum);
-
-                lvMember.Items.Add(MemberItem);
-            }          
+            ListViewItem MemberItem = new ListViewItem(Member.ID.ToString());
+            MemberItem.SubItems.Add(Member.Name);
+            MemberItem.SubItems.Add(Member.DOB.Date.ToString("yyyy/MM/dd"));
+            MemberItem.SubItems.Add(Member.MemberID);
+            MemberItem.SubItems.Add(Member.PhoneNum);
             
 
+
+            lvMember.Items.Add(MemberItem);
+
+        }
+
+        private void EditPicture()
+        {
+            byte[] BuffPicture;
+            CapForm = new CapturePicture();
+
+            CapForm = new CapturePicture();
+            CapForm.Show();
+            CapForm.Focus();
+
+            //CapForm.EventImageSaved += ExPictureAdded;
+            //Member.Picture = BuffPicture;
         }
 
         private void SearchParamSelected(object sender, EventArgs e)
@@ -131,26 +145,22 @@ namespace MainUI_namespace.Forms
 
         private void LV_RowSelect(object sender, EventArgs e)
         {
-            
+            string NameSelect;
             if (lvMember.FullRowSelect)
             {
                 //NameSelect = lvMember.SelectedItems[1].Text;
 
-                if(Member.Picture != null)
+                Image newImage;
+                using (MemoryStream ms = new MemoryStream(Member.Picture, 0, Member.Picture.Length))
                 {
-                    Image newImage;
-                    using (MemoryStream ms = new MemoryStream(Member.Picture, 0, Member.Picture.Length))
-                    {
-                        ms.Write(Member.Picture, 0, Member.Picture.Length);
+                    ms.Write(Member.Picture, 0, Member.Picture.Length);
 
-                        //Set image variable value using memory stream.
-                        newImage = Image.FromStream(ms, true);
-                    }
-
-                    pBox.Image = newImage;
-                    pBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    //Set image variable value using memory stream.
+                    newImage = Image.FromStream(ms, true);
                 }
-                
+
+                pBox.Image = newImage;
+                pBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
 

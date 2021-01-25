@@ -115,6 +115,12 @@
     <Compile Include="Forms\AddCard.Designer.cs">
       <DependentUpon>AddCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditMemberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditMemberForm.Designer.cs">
+      <DependentUpon>EditMemberForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CardMemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CapturePicture.resx">
       <DependentUpon>CapturePicture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditMemberForm.resx">
+      <DependentUpon>EditMemberForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CardMemForm.resx">
       <DependentUpon>CardMemForm.cs</DependentUpon>

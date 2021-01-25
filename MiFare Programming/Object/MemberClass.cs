@@ -49,19 +49,21 @@ namespace MainUI_namespace.Object
         {
             this.ID = (int)ValueArray[0];
             this.Name = (string)ValueArray[1];
+
             this.DOB = (ValueArray[2] == DBNull.Value) ? (new DateTime()) : (DateTime)ValueArray[2];
             this.IDType = (ValueArray[3] == DBNull.Value) ? (null) : (string)ValueArray[3];
             this.MemberID = (ValueArray[4] == DBNull.Value) ? (null) : (string)ValueArray[4];
-            this.PhoneNum = (string)ValueArray[5];
-            this.Email = (string)ValueArray[6];
-            this.Address = (string)ValueArray[7];
 
-            this.EffDate = (DateTime)ValueArray[8];
+            this.PhoneNum = (ValueArray[5] == DBNull.Value) ? (null) : (string)ValueArray[5];
+            this.Email = (ValueArray[6] == DBNull.Value) ? (null) : (string)ValueArray[6];
+            this.Address = (ValueArray[7] == DBNull.Value) ? (null) : (string)ValueArray[7];
+
+            this.EffDate = (ValueArray[8] == DBNull.Value) ? (new DateTime()) : (DateTime)ValueArray[8];
             this.EndDate = (ValueArray[9] == DBNull.Value) ? (new DateTime()) : (DateTime)ValueArray[9];
             this.Validity = (ValueArray[10] == DBNull.Value) ? (true) : (bool)ValueArray[10];
-            this.IsMember = (bool)ValueArray[11];
+            this.IsMember = (ValueArray[11] == DBNull.Value) ? (false) : (bool)ValueArray[11];
 
-            this.Picture = (byte[])ValueArray[12];
+            this.Picture = (ValueArray[12] == DBNull.Value) ? (null) : (byte[])ValueArray[12];
         }
 
         public void CreateNewMember(string MName, DateTime MDOB, string MIDType, string MID,

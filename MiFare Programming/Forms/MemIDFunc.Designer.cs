@@ -41,6 +41,7 @@ namespace MainUI_namespace.Forms
             this.bAddMem = new System.Windows.Forms.Button();
             this.bDropIn = new System.Windows.Forms.Button();
             this.bAddCard = new System.Windows.Forms.Button();
+            this.bAddPic = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.memberInfo_dbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memberInformationBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -177,6 +178,22 @@ namespace MainUI_namespace.Forms
             this.bAddCard.UseVisualStyleBackColor = false;
             this.bAddCard.Click += new System.EventHandler(this.bADDCard_Click);
             // 
+            // bAddPic
+            // 
+            this.bAddPic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bAddPic.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.bAddPic.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bAddPic.Font = new System.Drawing.Font("Malgun Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bAddPic.ForeColor = System.Drawing.Color.Blue;
+            this.bAddPic.Location = new System.Drawing.Point(394, 259);
+            this.bAddPic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bAddPic.Name = "bAddPic";
+            this.bAddPic.Size = new System.Drawing.Size(150, 50);
+            this.bAddPic.TabIndex = 9;
+            this.bAddPic.Text = "Add Picture";
+            this.bAddPic.UseVisualStyleBackColor = false;
+            this.bAddPic.Click += new System.EventHandler(this.bAddPic_Click);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,6 +206,7 @@ namespace MainUI_namespace.Forms
             this.Controls.Add(this.bDropIn);
             this.Controls.Add(this.bAddMem);
             this.Controls.Add(this.bAddCard);
+            this.Controls.Add(this.bAddPic);
             this.Controls.Add(this.bAssignCard);
             this.Controls.Add(this.bSCard);
             this.Controls.Add(this.bReset);
@@ -222,6 +240,7 @@ namespace MainUI_namespace.Forms
         internal System.Windows.Forms.Button bAddMem;
         internal System.Windows.Forms.Button bDropIn;
         internal System.Windows.Forms.Button bAddCard;
+        internal System.Windows.Forms.Button bAddPic;
     }
 }
 
