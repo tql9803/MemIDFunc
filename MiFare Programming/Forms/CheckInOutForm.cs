@@ -33,6 +33,8 @@ namespace MainUI_namespace.Forms
         DocumentClass Doc;
 
         public string LogFile;
+        string SaveAsDocPath = @"C:\MemIDDocument\ClientsDocuments\";
+
         public CheckInOutForm()
         {
             InitializeComponent();
@@ -43,7 +45,7 @@ namespace MainUI_namespace.Forms
             /////
             string ddLog = LogPath + DailyLog + DateTime.Today.Date.ToString("yyyy MM dd") + ".csv";
 
-            using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(ddLog, true))
+            using (System.IO.StreamWriter streamWriter = File.AppendText(ddLog))
             {
                 if(InOut)
                     streamWriter.WriteLine(Member.Name + "," + DateTime.Now.ToString("yy/MM/dd hh:mm"));
@@ -75,7 +77,7 @@ namespace MainUI_namespace.Forms
 
             byte[] bufferKey;
 
-            string LastLine;
+            string LastLine = "";
             string[] LineComp;
 
             bufferKey = CardThread.KeyNo;
@@ -90,7 +92,19 @@ namespace MainUI_namespace.Forms
                     Doc = DocAccess.FindDocument("SystemID", Member.ID);
                     if (Doc != null)
                     {
-                        LastLine = File.ReadLines(Doc.EventLog).Last();
+                        if(string.IsNullOrEmpty(Doc.EventLog))
+                        {
+                            char[] Trimmer = { '\r', '\n' };
+                            Doc.EventLog = SaveAsDocPath + Member.Name.Trim(Trimmer);
+                            System.IO.DirectoryInfo dir = Directory.CreateDirectory(Doc.EventLog);
+
+                            Doc.EventLog = Doc.EventLog + @"\" + "EventLog " + Member.Name.Trim(Trimmer) + ".csv";
+                            DocAccess.UpdateExistingDoc(Doc);
+                        }
+
+
+                        if (File.Exists(Doc.EventLog))
+                            LastLine = File.ReadLines(Doc.EventLog).Last();
 
                         LineComp = LastLine.Split(',');
 
@@ -111,6 +125,7 @@ namespace MainUI_namespace.Forms
 
                                 break;
                         }
+
                     }
                     
                 }

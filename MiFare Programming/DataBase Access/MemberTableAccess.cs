@@ -91,9 +91,14 @@ namespace MainUI_namespace.DataBase_Access
         /// <param Column Value="Value"></param>
         public MemberClass FindMember(object Para, object Value)
         {
-            string FindQuery = FindMemQuery + $"[{Para}] like @ParamVal " +
+            string FindQuery;
+
+            if ((string)Para == "Name")
+                FindQuery = FindMemQuery + $"[{Para}] like @ParamVal " +
                 $"or [{Para}] like @ParamVal + CHAR(10) +'%' " +
                 $"or [{Para}] like @ParamVal + CHAR(13) +'%' ";
+            else
+                FindQuery = FindMemQuery + $"[{Para}] = @ParamVal ";
 
             MemberClass Member = new MemberClass();
 
@@ -235,7 +240,11 @@ namespace MainUI_namespace.DataBase_Access
             
         
         
-        
+        /// <summary>
+        /// Not working yet.
+        /// For update existed member
+        /// </summary>
+        /// <param name="member"></param>
         public void UpdateExistingMember(MemberClass member)
         {
             string columnstring, conditionstring;

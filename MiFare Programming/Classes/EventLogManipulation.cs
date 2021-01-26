@@ -38,17 +38,5 @@ namespace MainUI_namespace.Classes
 
         public string LogFile;
 
-        public void CreateLog()
-        {
-            DirectoryInfo DirInfo = System.IO.Directory.CreateDirectory(LogFile);
-        }
-
-        public void WriteToLog(EventTranslationFirst Msg)
-        {
-            using (System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(LogFile, true))
-            {
-                streamWriter.WriteLine(Msg.ToString() + "," + DateTime.Now.ToString("yy/MM/dd hh:mm"));
-            }
-        }
     }
 }

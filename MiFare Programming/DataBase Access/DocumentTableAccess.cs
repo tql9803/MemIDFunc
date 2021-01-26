@@ -158,11 +158,23 @@ namespace MainUI_namespace.DataBase_Access
         public void UpdateExistingDoc(DocumentClass doc)
         {
             int RowAffected;
-            string Updatequery;
+            string Updatequery = UpdateExDocumentQuery;
+            byte nPara = 0b0000;
+            Updatequery = UpdateExDocumentQuery + $"[EventLog] = '{doc.EventLog}', [Waiver] = '{doc.Waiver}'," +
+                $" [Membership] = '{doc.MembershipDoc}'," +
+                $" [DocID] = '{doc.DocID}'" + " WHERE " + $"SystemID = {doc.SystemID}";
 
-            Updatequery = UpdateExDocumentQuery + $"Waiver = {doc.Waiver}, Membership = {doc.MembershipDoc}," +
-                $" DocID = {doc.DocID}" + " WHERE " + $"SystemID = {doc.SystemID}";
+            //if (!string.IsNullOrEmpty(doc.EventLog))
+            //{
+            //    Updatequery += "[EventLog] = @Para1";
+            //    nPara += 0b0001;
+            //}
 
+            //if (!string.IsNullOrEmpty(doc.EventLog))
+            //{
+            //    Updatequery += "[EventLog] = @Para1";
+            //    nPara += 0b0001;
+            //}
             using (ServerConnect = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(Updatequery, ServerConnect))
             {
@@ -174,7 +186,6 @@ namespace MainUI_namespace.DataBase_Access
 
                     if (RowAffected != 0)
                     {
-                        //UpdatePersonalLog(doc, Msg);
                     }
                     else
                     {
@@ -200,8 +211,8 @@ namespace MainUI_namespace.DataBase_Access
         {
             string PersonalLog = Document.EventLog;
 
-            if(!string.IsNullOrEmpty(PersonalLog))
-            using (StreamWriter fstream = new StreamWriter(PersonalLog, true))
+            if (!string.IsNullOrEmpty(Document.EventLog))           
+            using (StreamWriter fstream = File.AppendText(PersonalLog))
             {
                 fstream.WriteLine(Message.ToString() + "," + DateTime.Now.ToString("yy/MM/dd hh:mm"));
             }
