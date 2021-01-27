@@ -26,7 +26,7 @@ namespace MainUI_namespace.DataBase_Access
 
         public InventoryTableAccess()
         {
-            cnstr = ConfigurationManager.ConnectionStrings["MemIDFunc_namespace.Properties.Settings.MemberInfo_dbConnectionString"].ConnectionString;  
+            cnstr = ConfigurationManager.ConnectionStrings["MainUI_namespace.Properties.Settings.MemberInfo_dbConnectionString"].ConnectionString;  
         }
 
         public void UpdateInvnetory()

@@ -26,8 +26,8 @@ namespace MainUI_namespace.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THAI-LE-MSI-LAP\\SQLEXPRESS;Initial Catalog=C:\\MEMIDDOCUMENT\\MEMBERINF" +
-            "O_DB.MDF;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BARRIERE-GYM-FI\\SQLEXPRESS;AttachDbFilename=C:\\MemIDDocument\\MemberIn" +
+            "fo_db.mdf;Integrated Security=True;Connect Timeout=30")]
         public string MemberInfo_dbConnectionString {
             get {
                 return ((string)(this["MemberInfo_dbConnectionString"]));

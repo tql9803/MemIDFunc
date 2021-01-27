@@ -33,7 +33,7 @@ namespace MainUI_namespace.DataBase_Access
 
         public DocumentTableAccess()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["MemIDFunc_namespace.Properties.Settings.MemberInfo_dbConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["MainUI_namespace.Properties.Settings.MemberInfo_dbConnectionString"].ConnectionString;
             //MainDocument = new DocumentClass();
         }
 

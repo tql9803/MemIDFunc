@@ -29,7 +29,7 @@ namespace MainUI_namespace.DataBase_Access
         private const string UpdateExCardQuery = "UPDATE [CardTable] SET ";
         public CardTableAccess()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["MemIDFunc_namespace.Properties.Settings.MemberInfo_dbConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["MainUI_namespace.Properties.Settings.MemberInfo_dbConnectionString"].ConnectionString;
             //MainCard = new CardClass();
         }
 
