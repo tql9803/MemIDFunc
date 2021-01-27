@@ -90,7 +90,7 @@ namespace MainUI_namespace.Forms
         private void MiFareCardProg_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'memberInfo_dbDataSet.MemberInformation' table. You can move, or remove it, as needed.
-            this.memberInformationTableAdapter.Fill(this.memberInfo_dbDataSet.MemberInformation);
+            //this.memberInformationTableAdapter.Fill(this.memberInfo_dbDataSet.MemberInformation);
             bSCard.Enabled = true;
 
             MainMember = new MemberClass();
@@ -110,13 +110,13 @@ namespace MainUI_namespace.Forms
             CForm.Focus();
         }
 
-        private void memberInformationBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.memberInformationBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.memberInfo_dbDataSet);
+        //private void memberInformationBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        //{
+        //    this.Validate();
+        //    /this.memberInformationBindingSource.EndEdit();
+        //    /this.tableAdapterManager.UpdateAll(this.memberInfo_dbDataSet);
 
-        }
+        //}
 
         private void bAddMem_Click(object sender, EventArgs e)
         {

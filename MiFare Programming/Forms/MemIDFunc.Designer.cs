@@ -28,22 +28,15 @@ namespace MainUI_namespace.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.bReset = new System.Windows.Forms.Button();
             this.bQuit = new System.Windows.Forms.Button();
             this.bSCard = new System.Windows.Forms.Button();
-            this.memberInfo_dbDataSet = new MainUI_namespace.MemberInfo_dbDataSet();
-            this.memberInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.memberInformationTableAdapter = new MainUI_namespace.MemberInfo_dbDataSetTableAdapters.MemberInformationTableAdapter();
-            this.tableAdapterManager = new MainUI_namespace.MemberInfo_dbDataSetTableAdapters.TableAdapterManager();
             this.bAssignCard = new System.Windows.Forms.Button();
             this.bAddMem = new System.Windows.Forms.Button();
             this.bDropIn = new System.Windows.Forms.Button();
             this.bAddCard = new System.Windows.Forms.Button();
             this.bAddPic = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.memberInfo_dbDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memberInformationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bReset
@@ -93,26 +86,6 @@ namespace MainUI_namespace.Forms
             this.bSCard.Text = "Check In/Out";
             this.bSCard.UseVisualStyleBackColor = false;
             this.bSCard.Click += new System.EventHandler(this.bSCard_Click);
-            // 
-            // memberInfo_dbDataSet
-            // 
-            this.memberInfo_dbDataSet.DataSetName = "MemberInfo_dbDataSet";
-            this.memberInfo_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // memberInformationBindingSource
-            // 
-            this.memberInformationBindingSource.DataMember = "MemberInformation";
-            this.memberInformationBindingSource.DataSource = this.memberInfo_dbDataSet;
-            // 
-            // memberInformationTableAdapter
-            // 
-            this.memberInformationTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.MemberInformationTableAdapter = this.memberInformationTableAdapter;
-            this.tableAdapterManager.UpdateOrder = MainUI_namespace.MemberInfo_dbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // bAssignCard
             // 
@@ -221,8 +194,6 @@ namespace MainUI_namespace.Forms
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MiFareCardProg_Load);
             this.SizeChanged += new System.EventHandler(this.UI_OnSizeChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.memberInfo_dbDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memberInformationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,10 +203,6 @@ namespace MainUI_namespace.Forms
         internal System.Windows.Forms.Button bReset;
         internal System.Windows.Forms.Button bQuit;
         internal System.Windows.Forms.Button bSCard;
-        private MainUI_namespace.MemberInfo_dbDataSet memberInfo_dbDataSet;
-        private System.Windows.Forms.BindingSource memberInformationBindingSource;
-        private MainUI_namespace.MemberInfo_dbDataSetTableAdapters.MemberInformationTableAdapter memberInformationTableAdapter;
-        private MainUI_namespace.MemberInfo_dbDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         internal System.Windows.Forms.Button bAssignCard;
         internal System.Windows.Forms.Button bAddMem;
         internal System.Windows.Forms.Button bDropIn;

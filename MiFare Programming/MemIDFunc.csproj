@@ -165,14 +165,6 @@
       <DependentUpon>MemInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\ModWinsCard.cs" />
-    <Compile Include="MemberInfo_dbDataSet.cs">
-      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MemberInfo_dbDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Object\OrderClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,17 +204,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="MemberInfo_dbDataSet.xsc">
-      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MemberInfo_dbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MemberInfo_dbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MemberInfo_dbDataSet.xss">
-      <DependentUpon>MemberInfo_dbDataSet.xsd</DependentUpon>
-    </None>
     <None Include="MemIDFunc_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Resources\Documents\Employment Agreement.v1.docx" />
